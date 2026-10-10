@@ -1,4 +1,4 @@
-# MDM Skin 0.1.0 — Kodi 22 development
+# MDM Skin 0.1.1 — Kodi 22 development
 
 Install from MDM Repo (Development), then Settings > Interface > Skin > MDM Skin. Kodi asks whether to keep the skin; if the home is not usable, let its confirmation expire to return to the previous skin. Settings remains on the home sidebar. Return to Estuary through Interface > Skin at any time.
 
