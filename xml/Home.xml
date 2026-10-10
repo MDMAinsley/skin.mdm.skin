@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='utf-8'?>
+<window>
+  <defaultcontrol>100</defaultcontrol>
+  <onload>RunScript(special://skin/default.py)</onload>
+  <backgroundcolor>FF101014</backgroundcolor>
+  <controls>
+    <include condition="Skin.HasSetting(mdm_artwork)">MDMArtworkHome</include>
+    <control type="label">
+      <left>60</left>
+      <top>45</top>
+      <width>340</width>
+      <height>85</height>
+      <font>font60</font>
+      <label>MDM</label>
+      <textcolor>FFFFFFFF</textcolor>
+    </control>
+    <control type="label">
+      <left>1510</left>
+      <top>40</top>
+      <width>300</width>
+      <height>60</height>
+      <font>font27</font>
+      <label>$INFO[System.Time]</label>
+      <textcolor>FFFFFFFF</textcolor>
+    </control>
+    <control type="label">
+      <left>420</left>
+      <top>125</top>
+      <width>1350</width>
+      <height>80</height>
+      <font>font45</font>
+      <label>Browse something worth watching.</label>
+      <textcolor>FFFFFFFF</textcolor>
+      <visible>!Control.HasFocus(5100) + !Control.HasFocus(5200)</visible>
+    </control>
+    <control type="label">
+      <left>420</left>
+      <top>220</top>
+      <width>1370</width>
+      <height>60</height>
+      <font>font14</font>
+      <label>Films, TV and search are one click away. Setup opens MDM Conf.</label>
+      <textcolor>FFFFFFFF</textcolor>
+      <visible>!Control.HasFocus(5100) + !Control.HasFocus(5200)</visible>
+    </control>
+    <control type="label">
+      <left>420</left>
+      <top>360</top>
+      <width>1380</width>
+      <height>60</height>
+      <font>font27</font>
+      <label>Basic mode — home artwork and widgets are off.</label>
+      <textcolor>FFFFFFFF</textcolor>
+      <visible>!Skin.HasSetting(mdm_artwork)</visible>
+    </control>
+    <control type="label">
+      <left>420</left>
+      <top>445</top>
+      <width>1400</width>
+      <height>65</height>
+      <font>font13</font>
+      <label>Open Flix to browse. Home never starts trailers or searches for streams.</label>
+      <textcolor>FFFFFFFF</textcolor>
+      <visible>!Skin.HasSetting(mdm_artwork)</visible>
+    </control>
+    <control type="button" id="100">
+      <left>60</left>
+      <top>155</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Films</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>112</onup>
+      <ondown>101</ondown>
+      <onleft>100</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=movies,return)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">100</onright>
+    </control>
+    <control type="button" id="101">
+      <left>60</left>
+      <top>218</top>
+      <width>300</width>
+      <height>57</height>
+      <label>TV</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>100</onup>
+      <ondown>102</ondown>
+      <onleft>101</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=tvshows,return)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">101</onright>
+    </control>
+    <control type="button" id="102">
+      <left>60</left>
+      <top>281</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Search</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>101</onup>
+      <ondown>103</ondown>
+      <onleft>102</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search,return)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">102</onright>
+    </control>
+    <control type="button" id="103">
+      <left>60</left>
+      <top>344</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Flix</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>102</onup>
+      <ondown>104</ondown>
+      <onleft>103</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=home,return)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">103</onright>
+    </control>
+    <control type="button" id="104">
+      <left>60</left>
+      <top>407</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Setup</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>103</onup>
+      <ondown>105</ondown>
+      <onleft>104</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>RunAddon(script.mdm.conf)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">104</onright>
+    </control>
+    <control type="button" id="105">
+      <left>60</left>
+      <top>470</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Favourites</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>104</onup>
+      <ondown>106</ondown>
+      <onleft>105</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(favouritesbrowser)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">105</onright>
+    </control>
+    <control type="button" id="106">
+      <left>60</left>
+      <top>533</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Add-ons</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>105</onup>
+      <ondown>107</ondown>
+      <onleft>106</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(addonbrowser)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">106</onright>
+    </control>
+    <control type="button" id="107">
+      <left>60</left>
+      <top>596</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Settings</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>106</onup>
+      <ondown>108</ondown>
+      <onleft>107</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(settings)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">107</onright>
+    </control>
+    <control type="button" id="108">
+      <left>60</left>
+      <top>659</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Flix settings</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>107</onup>
+      <ondown>109</ondown>
+      <onleft>108</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>Addon.OpenSettings(plugin.video.mdm.flix)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">108</onright>
+    </control>
+    <control type="button" id="109">
+      <left>60</left>
+      <top>722</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Home mode</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>108</onup>
+      <ondown>110</ondown>
+      <onleft>109</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>RunScript(special://skin/default.py,choose)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">109</onright>
+    </control>
+    <control type="button" id="110">
+      <left>60</left>
+      <top>785</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Refresh rows</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>109</onup>
+      <ondown>111</ondown>
+      <onleft>110</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ReloadSkin()</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">110</onright>
+    </control>
+    <control type="button" id="111">
+      <left>60</left>
+      <top>848</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Now playing</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>110</onup>
+      <ondown>112</ondown>
+      <onleft>111</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>Action(FullScreen)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">111</onright>
+    </control>
+    <control type="button" id="112">
+      <left>60</left>
+      <top>911</top>
+      <width>300</width>
+      <height>57</height>
+      <label>Power</label>
+      <font>font14</font>
+      <textoffsetx>20</textoffsetx>
+      <aligny>center</aligny>
+      <onup>111</onup>
+      <ondown>100</ondown>
+      <onleft>112</onleft>
+      <onback>100</onback>
+      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+      <onclick>ActivateWindow(shutdownmenu)</onclick>
+      <onright condition="Skin.HasSetting(mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">112</onright>
+    </control>
+    <control type="label">
+      <left>420</left>
+      <top>1008</top>
+      <width>1420</width>
+      <height>40</height>
+      <font>font10</font>
+      <label>Artwork mode • 12 titles per row • no automatic trailers</label>
+      <textcolor>FFFFFFFF</textcolor>
+      <visible>Skin.HasSetting(mdm_artwork)</visible>
+    </control>
+  </controls>
+</window>
