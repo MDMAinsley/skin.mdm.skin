@@ -24,7 +24,7 @@ def run():
     except RuntimeError:
         light = True
     automatic, reason = recommend(memory, free, light)
-    mode = xbmc.getInfoLabel("Skin.String(mdm_home_mode)")
+    mode = xbmc.getInfoLabel("Skin.String(device_mdm_home_mode)")
     if mode not in ("Auto", "Basic", "Artwork"):
         mode = "Auto"
     if len(sys.argv) > 1 and sys.argv[1] == "choose":
@@ -33,7 +33,7 @@ def run():
         if choice < 0:
             return
         mode = ("Auto", "Basic", "Artwork")[choice]
-        xbmc.executebuiltin("Skin.SetString(mdm_home_mode," + mode + ")")
+        xbmc.executebuiltin("Skin.SetString(device_mdm_home_mode," + mode + ")")
     # Do not reload underneath Kodi's "keep this skin?" confirmation or another
     # modal dialog. If it remains open, this home visit stays in its current mode.
     monitor = xbmc.Monitor()
@@ -45,14 +45,14 @@ def run():
     else:
         return
     desired = automatic if mode == "Auto" else mode == "Artwork"
-    current = xbmc.getCondVisibility("Skin.HasSetting(mdm_artwork)")
+    current = xbmc.getCondVisibility("Skin.HasSetting(device_mdm_artwork)")
     if bool(current) != desired:
-        xbmc.executebuiltin("Skin.SetBool(mdm_artwork)" if desired else "Skin.Reset(mdm_artwork)")
+        xbmc.executebuiltin("Skin.SetBool(device_mdm_artwork)" if desired else "Skin.Reset(device_mdm_artwork)")
         # Includes are selected on skin load. Read back before requesting a
         # single reload; a failed setter must not create an endless reload loop.
         monitor = xbmc.Monitor()
         for _ in range(10):
-            if bool(xbmc.getCondVisibility("Skin.HasSetting(mdm_artwork)")) == desired:
+            if bool(xbmc.getCondVisibility("Skin.HasSetting(device_mdm_artwork)")) == desired:
                 xbmc.executebuiltin("ReloadSkin()")
                 break
             if monitor.waitForAbort(0.05):

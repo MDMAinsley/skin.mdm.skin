@@ -9,3 +9,5 @@ Home mode offers Auto, Basic and Artwork. Auto uses total memory, userdata files
 The skin retains Estuary browsing/dialogs/keyboard/settings/playback windows, with attribution/licenses in ATTRIBUTION.md, ESTUARY-LICENSE.txt, LICENSE.txt and fonts/. Foundation inventory is in FOUNDATION.json. GUI API 5.18.0 requires Kodi 22; Firestick/Kodi 21 acceptance is still open.
 
 Saved lists, personal ratings, continue watching/resume tracking, explicit trailers, full portable skin builds and Conf preventing activation on constrained devices are planned separately in the persistent MDM Skin roadmap. Kodi Favourites is available now but is not yet an MDM saved-list system.
+
+Home mode and its derived artwork flag use device_ keys, excluded by Conf portable-build validation. Each device makes its own recommendation.
