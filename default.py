@@ -14,6 +14,17 @@ from adaptive import memory_mb, recommend
 def run():
     if xbmc.getSkinDir() != "skin.mdm.skin":
         return
+    try:
+        flix = xbmcaddon.Addon("plugin.video.mdm.flix")
+        if len(sys.argv) > 1 and sys.argv[1] == "flix_settings":
+            flix.openSettings()
+        # Whitelisted, non-secret mode in the widget URL invalidates cached
+        # directory items when the playback preference changes. Metadata still
+        # uses the existing Core cache. No source requests occur on home.
+        mode_key = "autoplay" if flix.getSetting("playback_mode") == "Autoplay" else "select"
+        xbmcgui.Window(10000).setProperty("mdm_widget_mode", mode_key)
+    except RuntimeError:
+        xbmcgui.Window(10000).setProperty("mdm_widget_mode", "select")
     memory = memory_mb(xbmc.getInfoLabel("System.Memory(total)"))
     try:
         free = shutil.disk_usage(xbmcvfs.translatePath("special://profile/")).free

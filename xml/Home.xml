@@ -238,7 +238,7 @@
       <onback>100</onback>
       <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>Addon.OpenSettings(plugin.video.mdm.flix)</onclick>
+      <onclick>RunScript(special://skin/default.py,flix_settings)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
       <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">108</onright>

@@ -1,3 +1,6 @@
+0.2.0
+Repair first-load widget updates and empty-row focus; use native playable/folder/context handling and playback-mode refresh.
+
 0.1.1
 Keep adaptive artwork/mode settings device-local and excluded from portable builds.
 

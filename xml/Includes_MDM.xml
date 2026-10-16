@@ -38,11 +38,8 @@
       <preloaditems>1</preloaditems>
       <onleft>100</onleft>
       <onright>noop</onright>
-      <onup>100</onup>
-      <ondown>5200</ondown>
       <onback>100</onback>
-      <visible>Integer.IsGreater(Container(5100).NumItems,0)</visible>
-      <onclick>ActivateWindow(Videos,$INFO[Container(5100).ListItem.FilenameAndPath],return)</onclick>
+      <visible>true</visible>
       <itemlayout width="160" height="245">
         <control type="image">
           <left>5</left>
@@ -88,7 +85,10 @@
           <textcolor>FFFFFFFF</textcolor>
         </control>
       </focusedlayout>
-      <content target="videos" limit="12">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=movie</content>
+      <content target="videos" limit="12" browse="never">$VAR[MDMWidgetMovieURL]</content>
+      <onup>100</onup>
+      <ondown condition="Integer.IsGreater(Container(5200).NumItems,0)">5200</ondown>
+      <ondown condition="!Integer.IsGreater(Container(5200).NumItems,0)">100</ondown>
     </control>
     <control type="label">
       <left>420</left>
@@ -148,11 +148,8 @@
       <preloaditems>1</preloaditems>
       <onleft>100</onleft>
       <onright>noop</onright>
-      <onup>5100</onup>
-      <ondown>100</ondown>
       <onback>100</onback>
-      <visible>Integer.IsGreater(Container(5200).NumItems,0)</visible>
-      <onclick>ActivateWindow(Videos,$INFO[Container(5200).ListItem.FilenameAndPath],return)</onclick>
+      <visible>true</visible>
       <itemlayout width="160" height="245">
         <control type="image">
           <left>5</left>
@@ -198,7 +195,10 @@
           <textcolor>FFFFFFFF</textcolor>
         </control>
       </focusedlayout>
-      <content target="videos" limit="12">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=tv</content>
+      <content target="videos" limit="12" browse="never">$VAR[MDMWidgetTVURL]</content>
+      <onup condition="Integer.IsGreater(Container(5100).NumItems,0)">5100</onup>
+      <onup condition="!Integer.IsGreater(Container(5100).NumItems,0)">100</onup>
+      <ondown>100</ondown>
     </control>
     <control type="label">
       <left>420</left>
@@ -240,4 +240,12 @@
       <visible>Control.HasFocus(5200)</visible>
     </control>
   </include>
+  <variable name="MDMWidgetMovieURL">
+    <value condition="!String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=movie&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]</value>
+    <value />
+  </variable>
+  <variable name="MDMWidgetTVURL">
+    <value condition="!String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=tv&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]</value>
+    <value />
+  </variable>
 </includes>
