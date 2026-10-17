@@ -20,3 +20,7 @@ Search opens one keyboard and returns mixed Film/TV results in TMDB relevance or
 Home rows remain visible while loading, so Kodi can apply asynchronous results without leaving the screen. Native item actions distinguish playable items from folders and retain the context menu. Empty rows fall back to the sidebar. Home Flix settings refreshes the mode-sensitive widget URL after closing; ordinary Flix settings requests a container refresh. Reopen a catalogue page after changing playback preferences externally.
 
 Artwork currently uses Kodi's texture cache; no global cache deletion is performed. Active-set, bounded MDM-owned artwork caching/eviction is recorded for the cache milestone, with stale removal only after successful replacement and preservation of other addons' images.
+
+
+0.2.1 — 17 October 2026
+Remove the home-only 175-pixel context-menu translation, which moved the menu after Kodi computed its screen bounds and clipped TV-row menu actions. Keep Kodi positioning, scrolling and the existing film/TV row layout. DialogContextMenu.xml now intentionally differs from the pinned Estuary foundation by removal of that translation.
