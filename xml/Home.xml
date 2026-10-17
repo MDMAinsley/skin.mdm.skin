@@ -128,7 +128,7 @@
       <top>344</top>
       <width>300</width>
       <height>57</height>
-      <label>Flix</label>
+      <label>Continue Watching</label>
       <font>font14</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
@@ -138,7 +138,7 @@
       <onback>100</onback>
       <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=home,return)</onclick>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=continue_watching,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
       <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">103</onright>
@@ -168,7 +168,7 @@
       <top>470</top>
       <width>300</width>
       <height>57</height>
-      <label>Favourites</label>
+      <label>My List</label>
       <font>font14</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
@@ -178,7 +178,7 @@
       <onback>100</onback>
       <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(favouritesbrowser)</onclick>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
       <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">105</onright>

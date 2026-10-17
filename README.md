@@ -24,3 +24,7 @@ Artwork currently uses Kodi's texture cache; no global cache deletion is perform
 
 0.2.1 — 17 October 2026
 Remove the home-only 175-pixel context-menu translation, which moved the menu after Kodi computed its screen bounds and clipped TV-row menu actions. Keep Kodi positioning, scrolling and the existing film/TV row layout. DialogContextMenu.xml now intentionally differs from the pinned Estuary foundation by removal of that translation.
+
+
+0.3.0 — 17 October 2026
+Device-local Resume/Start again, Continue Watching and watched/history controls. Only tagged MDM movie/episode video after AV start is observed; periodic checkpoints every 15 seconds, local progress by stable catalogue identity, no source URLs or network sync. Home has Continue Watching/My List shortcuts; Kodi favourites remain under Flix home. Saving personal lists/ratings remains separate. Movies/episodes under 60 seconds or unknown duration never auto-complete; known videos at >=90% are marked watched. Progress is device-local and excluded from current Conf portable builds. MDBList is the recommended future connected tracker; linking/sync and self-hosting are not implemented in this release.
