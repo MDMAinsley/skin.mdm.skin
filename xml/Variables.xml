@@ -365,6 +365,7 @@
 		<value condition="Control.HasFocus(70045)">$LOCALIZE[31106]</value>
 		<value condition="Control.HasFocus(70046)">$LOCALIZE[13392]</value>
 		<value condition="Control.HasFocus(70047)">$LOCALIZE[36501]</value>
+		<value condition="Control.HasFocus(70049)">Mark or rate intro and outro timings</value>
 		<value condition="Control.HasFocus(70048)">$LOCALIZE[5]</value>
 		<value condition="Control.HasFocus(70050)">$LOCALIZE[29900]</value>
 		<value condition="Control.HasFocus(70051)">$LOCALIZE[31066]</value>

@@ -212,6 +212,24 @@
 						<onclick>SetProperty(settingsdialog_header,$LOCALIZE[36501],home)</onclick>
 						<onclick>ActivateWindow(1101)</onclick>
 					</control>
+                    <control type="button" id="70049">
+                        <description>MDM intro and outro controls</description>
+                        <width>230</width>
+                        <height>76</height>
+                        <label>Intro / outro</label>
+                        <font>font13</font>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <textcolor>white</textcolor>
+                        <focusedcolor>FF101010</focusedcolor>
+                        <texturefocus colordiffuse="FFFFFFFF">colors/white.png</texturefocus>
+                        <texturenofocus colordiffuse="FF444444">colors/white.png</texturenofocus>
+                        <onup>87</onup>
+                        <ondown>noop</ondown>
+                        <onclick>Dialog.Close(VideoOSD)</onclick>
+                        <onclick>RunPlugin(plugin://plugin.video.mdm.flix/?action=player_timings)</onclick>
+                        <visible>String.IsEqual(Window(home).Property(MDM.Flix.EpisodeControls),true)</visible>
+                    </control>
 					<control type="radiobutton" id="70048">
 						<include content="OSDButton">
 							<param name="texture" value="osd/fullscreen/buttons/settings.png"/>

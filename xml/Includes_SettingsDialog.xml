@@ -76,6 +76,14 @@
 		</control>
 	</include>
 	<include name="SettingsDialogVideoSettingsContent">
+        <control type="button" id="22111">
+            <include>DialogSettingButton</include>
+            <label>Intro / outro controls</label>
+            <onclick>Dialog.Close(1101)</onclick>
+            <onclick>Dialog.Close(VideoOSD)</onclick>
+            <onclick>RunPlugin(plugin://plugin.video.mdm.flix/?action=player_timings)</onclick>
+            <visible>String.IsEqual(Window(home).Property(MDM.Flix.EpisodeControls),true)</visible>
+        </control>
 		<control type="button" id="22101">
 			<include>DialogSettingButton</include>
 			<label>$LOCALIZE[13396]</label>
