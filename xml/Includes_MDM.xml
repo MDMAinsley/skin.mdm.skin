@@ -1,5 +1,78 @@
 <?xml version='1.0' encoding='utf-8'?>
 <includes>
+  <include name="MDMInstalledVersion">
+    <definition>
+      <control type="label">
+        <left>$PARAM[left]</left>
+        <top>$PARAM[top]</top>
+        <width>278</width>
+        <height>30</height>
+        <aligny>center</aligny>
+        <font>font10</font>
+        <textcolor>FFF0F0F0</textcolor>
+        <label>MDM [COLOR $PARAM[color]]$PARAM[name][/COLOR]: $INFO[System.AddonVersion($PARAM[id])]</label>
+        <visible>!String.IsEmpty(System.AddonVersion($PARAM[id]))</visible>
+      </control>
+    </definition>
+  </include>
+  <include name="MDMInstalledVersions">
+    <control type="image">
+      <left>0</left>
+      <top>0</top>
+      <width>1920</width>
+      <height>125</height>
+      <texture colordiffuse="E6101014">colors/white.png</texture>
+    </control>
+    <include content="MDMInstalledVersion">
+      <param name="id" value="plugin.video.mdm.flix" />
+      <param name="name" value="Flix" />
+      <param name="color" value="FFC78CFF" />
+      <param name="left" value="350" />
+      <param name="top" value="42" />
+    </include>
+    <include content="MDMInstalledVersion">
+      <param name="id" value="script.mdm.link" />
+      <param name="name" value="Link" />
+      <param name="color" value="FFF2E85E" />
+      <param name="left" value="632" />
+      <param name="top" value="42" />
+    </include>
+    <include content="MDMInstalledVersion">
+      <param name="id" value="script.mdm.core" />
+      <param name="name" value="Core" />
+      <param name="color" value="FF88ACFF" />
+      <param name="left" value="914" />
+      <param name="top" value="42" />
+    </include>
+    <include content="MDMInstalledVersion">
+      <param name="id" value="script.mdm.conf" />
+      <param name="name" value="Conf" />
+      <param name="color" value="FF9DE76D" />
+      <param name="left" value="1196" />
+      <param name="top" value="42" />
+    </include>
+    <include content="MDMInstalledVersion">
+      <param name="id" value="skin.mdm.skin" />
+      <param name="name" value="Skin" />
+      <param name="color" value="FFFFAB68" />
+      <param name="left" value="350" />
+      <param name="top" value="76" />
+    </include>
+    <include content="MDMInstalledVersion">
+      <param name="id" value="repository.mdm.repo" />
+      <param name="name" value="Repo" />
+      <param name="color" value="FFFF8188" />
+      <param name="left" value="632" />
+      <param name="top" value="76" />
+    </include>
+    <include content="MDMInstalledVersion">
+      <param name="id" value="repository.mdm.repo.dev" />
+      <param name="name" value="Dev Repo" />
+      <param name="color" value="FFFF8188" />
+      <param name="left" value="914" />
+      <param name="top" value="76" />
+    </include>
+  </include>
   <include name="MDMArtworkHome">
     <control type="image">
       <left>0</left>
@@ -36,9 +109,9 @@
       <orientation>horizontal</orientation>
       <scrolltime>150</scrolltime>
       <preloaditems>1</preloaditems>
-      <onleft>100</onleft>
+      <onleft>103</onleft>
       <onright>noop</onright>
-      <onback>100</onback>
+      <onback>103</onback>
       <visible>true</visible>
       <itemlayout width="160" height="245">
         <control type="image">
@@ -86,9 +159,9 @@
         </control>
       </focusedlayout>
       <content target="videos" limit="12" browse="never">$VAR[MDMWidgetMovieURL]</content>
-      <onup>100</onup>
+      <onup>103</onup>
       <ondown condition="Integer.IsGreater(Container(5200).NumItems,0)">5200</ondown>
-      <ondown condition="!Integer.IsGreater(Container(5200).NumItems,0)">100</ondown>
+      <ondown condition="!Integer.IsGreater(Container(5200).NumItems,0)">103</ondown>
     </control>
     <control type="label">
       <left>420</left>
@@ -106,7 +179,7 @@
       <width>1400</width>
       <height>50</height>
       <font>font12</font>
-      <label>No titles yet. Open Flix settings to check TMDB, then use Refresh rows.</label>
+      <label>No titles yet. Open Settings → Flix settings to check TMDB, then use Refresh.</label>
       <textcolor>FFFFFFFF</textcolor>
       <visible>!Container(5100).IsUpdating + Integer.IsEqual(Container(5100).NumItems,0)</visible>
     </control>
@@ -146,9 +219,9 @@
       <orientation>horizontal</orientation>
       <scrolltime>150</scrolltime>
       <preloaditems>1</preloaditems>
-      <onleft>100</onleft>
+      <onleft>103</onleft>
       <onright>noop</onright>
-      <onback>100</onback>
+      <onback>103</onback>
       <visible>true</visible>
       <itemlayout width="160" height="245">
         <control type="image">
@@ -197,8 +270,8 @@
       </focusedlayout>
       <content target="videos" limit="12" browse="never">$VAR[MDMWidgetTVURL]</content>
       <onup condition="Integer.IsGreater(Container(5100).NumItems,0)">5100</onup>
-      <onup condition="!Integer.IsGreater(Container(5100).NumItems,0)">100</onup>
-      <ondown>100</ondown>
+      <onup condition="!Integer.IsGreater(Container(5100).NumItems,0)">103</onup>
+      <ondown>103</ondown>
     </control>
     <control type="label">
       <left>420</left>
@@ -216,7 +289,7 @@
       <width>1400</width>
       <height>50</height>
       <font>font12</font>
-      <label>No titles yet. Open Flix settings to check TMDB, then use Refresh rows.</label>
+      <label>No titles yet. Open Settings → Flix settings to check TMDB, then use Refresh.</label>
       <textcolor>FFFFFFFF</textcolor>
       <visible>!Container(5200).IsUpdating + Integer.IsEqual(Container(5200).NumItems,0)</visible>
     </control>

@@ -14,9 +14,26 @@ from adaptive import memory_mb, recommend
 def run():
     if xbmc.getSkinDir() != "skin.mdm.skin":
         return
+    action = sys.argv[1] if len(sys.argv) > 1 else ""
+    if action == "settings_menu":
+        options = (
+            ("MDM Setup", "RunAddon(script.mdm.conf)"),
+            ("Flix settings", "flix_settings"),
+            ("Home mode", "choose"),
+            ("Manage lists and ratings", "ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home,return)"),
+            ("Add-ons", "ActivateWindow(addonbrowser)"),
+            ("Kodi settings", "ActivateWindow(settings)"),
+        )
+        choice = xbmcgui.Dialog().select("Settings", [label for label, _ in options])
+        if not 0 <= choice < len(options):
+            return
+        action = options[choice][1]
+        if action not in ("choose", "flix_settings"):
+            xbmc.executebuiltin(action)
+            return
     try:
         flix = xbmcaddon.Addon("plugin.video.mdm.flix")
-        if len(sys.argv) > 1 and sys.argv[1] == "flix_settings":
+        if action == "flix_settings":
             flix.openSettings()
         # Whitelisted, non-secret mode in the widget URL invalidates cached
         # directory items when the playback preference changes. Metadata still
@@ -38,7 +55,7 @@ def run():
     mode = xbmc.getInfoLabel("Skin.String(device_mdm_home_mode)")
     if mode not in ("Auto", "Basic", "Artwork"):
         mode = "Auto"
-    if len(sys.argv) > 1 and sys.argv[1] == "choose":
+    if action == "choose":
         options = ["Auto — " + ("artwork" if automatic else "basic") + " (" + reason + ")", "Basic — no home widgets", "Artwork — two poster rows"]
         choice = xbmcgui.Dialog().select("MDM Home mode", options)
         if choice < 0:

@@ -1,3 +1,6 @@
+0.3.3
+Show live installed MDM versions and simplify home navigation. Refresh checks Kodi repositories and reloads home.
+
 0.2.0
 Repair first-load widget updates and empty-row focus; use native playable/folder/context handling and playback-mode refresh.
 
