@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
 <includes>
+  <variable name="MDMHomeListLabel">
+    <value condition="!String.IsEmpty(Window(home).Property(mdm_home_list_label))">$INFO[Window(home).Property(mdm_home_list_label)]</value>
+    <value>My List</value>
+  </variable>
+  <variable name="MDMHomeAccent">
+    <value condition="!String.IsEmpty(Window(home).Property(mdm_home_accent))">$INFO[Window(home).Property(mdm_home_accent)]</value>
+    <value>FFE50914</value>
+  </variable>
+  <variable name="MDMHomeAccentText">
+    <value condition="!String.IsEmpty(Window(home).Property(mdm_home_accent_text))">$INFO[Window(home).Property(mdm_home_accent_text)]</value>
+    <value>FFFFFFFF</value>
+  </variable>
   <include name="MDMInstalledVersion">
     <definition>
       <control type="label">
@@ -138,7 +150,7 @@
           <top>0</top>
           <width>154</width>
           <height>216</height>
-          <texture colordiffuse="FFE50914">colors/white.png</texture>
+          <texture colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texture>
         </control>
         <control type="image">
           <left>5</left>
@@ -248,7 +260,7 @@
           <top>0</top>
           <width>154</width>
           <height>216</height>
-          <texture colordiffuse="FFE50914">colors/white.png</texture>
+          <texture colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texture>
         </control>
         <control type="image">
           <left>5</left>

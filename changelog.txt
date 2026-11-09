@@ -1,3 +1,6 @@
+0.3.4
+Choose an existing home list shortcut and a preset or custom home accent.
+
 0.3.3
 Show live installed MDM versions and simplify home navigation. Refresh checks Kodi repositories and reloads home.
 

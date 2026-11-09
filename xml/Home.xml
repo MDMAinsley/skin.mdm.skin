@@ -2,6 +2,7 @@
 <window>
   <defaultcontrol>103</defaultcontrol>
   <onload>RunScript(special://skin/default.py)</onload>
+  <onload>RunPlugin(plugin://plugin.video.mdm.flix/?action=library_home_list_label)</onload>
   <backgroundcolor>FF101014</backgroundcolor>
   <controls>
     <include condition="Skin.HasSetting(device_mdm_artwork)">MDMArtworkHome</include>
@@ -73,12 +74,13 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup condition="Player.HasMedia">111</onup>
       <onup condition="!Player.HasMedia">112</onup>
       <ondown>105</ondown>
       <onleft>103</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=continue_watching,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
@@ -90,17 +92,18 @@
       <top>220</top>
       <width>340</width>
       <height>57</height>
-      <label>My List</label>
+      <label>$VAR[MDMHomeListLabel]</label>
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>103</onup>
       <ondown>102</ondown>
       <onleft>105</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_view&amp;list_id=1,return)</onclick>
+      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home_list,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
       <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">105</onright>
@@ -114,11 +117,12 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>105</onup>
       <ondown>100</ondown>
       <onleft>102</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
@@ -134,11 +138,12 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>102</onup>
       <ondown>101</ondown>
       <onleft>100</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=movies,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
@@ -154,11 +159,12 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>100</onup>
       <ondown>110</ondown>
       <onleft>101</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=tvshows,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
@@ -174,11 +180,12 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>101</onup>
       <ondown>107</ondown>
       <onleft>110</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>UpdateAddonRepos()</onclick>
       <onclick>ReloadSkin()</onclick>
@@ -195,11 +202,12 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>110</onup>
       <ondown>112</ondown>
       <onleft>107</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>RunScript(special://skin/default.py,settings_menu)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
@@ -215,12 +223,13 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>107</onup>
       <ondown condition="Player.HasMedia">111</ondown>
       <ondown condition="!Player.HasMedia">103</ondown>
       <onleft>112</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(shutdownmenu)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
@@ -236,11 +245,12 @@
       <font>font13</font>
       <textoffsetx>20</textoffsetx>
       <aligny>center</aligny>
+      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
       <onup>112</onup>
       <ondown>103</ondown>
       <onleft>111</onleft>
       <onback>103</onback>
-      <texturefocus colordiffuse="FFE50914">colors/white.png</texturefocus>
+      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>Action(FullScreen)</onclick>
       <visible>Player.HasMedia</visible>

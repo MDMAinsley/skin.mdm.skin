@@ -1,5 +1,6 @@
 """Local home choice. Never changes the active skin, Flix preferences or accounts."""
 import os
+import re
 import shutil
 import sys
 import xbmc
@@ -9,6 +10,52 @@ import xbmcvfs
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "resources"))
 from adaptive import memory_mb, recommend
+
+
+ACCENTS = (
+    ("MDM Red", "E50914"),
+    ("Purple", "8754CF"),
+    ("Blue", "317DD4"),
+    ("Teal", "28A99E"),
+    ("Gold", "EAB64D"),
+)
+ACCENT_SETTING = "mdm_home_accent"
+
+
+def luminance(rgb):
+    channels = (int(rgb[i:i+2],16)/255 for i in (0,2,4))
+    linear = (value/12.92 if value <= .04045 else ((value+.055)/1.055)**2.4 for value in channels)
+    return sum(weight*value for weight,value in zip((.2126,.7152,.0722),linear))
+
+
+def valid_accent(value):
+    return re.fullmatch(r"[0-9A-F]{6}",value) and (luminance(value)+.05)/(luminance("202024")+.05) >= 3
+
+
+def apply_accent(accent):
+    window = xbmcgui.Window(10000)
+    window.setProperty("mdm_home_accent", "FF"+accent)
+    window.setProperty("mdm_home_accent_text", "FFFFFFFF" if luminance(accent)<=.179 else "FF000000")
+
+
+def choose_accent(current):
+    dialog = xbmcgui.Dialog()
+    choice = dialog.select("Home accent colour",[name for name, _ in ACCENTS]+["Custom hex colour…"])
+    if not 0 <= choice <= len(ACCENTS):
+        return
+    if choice < len(ACCENTS):
+        accent = ACCENTS[choice][1]
+    else:
+        keyboard = xbmc.Keyboard(current,"Home accent colour (six hex digits)")
+        keyboard.doModal()
+        if not keyboard.isConfirmed():
+            return
+        accent = keyboard.getText().strip().lstrip("#").upper()
+        if not valid_accent(accent):
+            dialog.ok("Home accent colour","Enter six hex digits and choose a colour that stands out against the dark home screen.")
+            return
+    xbmc.executebuiltin("Skin.SetString("+ACCENT_SETTING+","+accent+")")
+    apply_accent(accent)
 
 
 def run():
@@ -23,14 +70,23 @@ def run():
             ("Manage lists and ratings", "ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home,return)"),
             ("Add-ons", "ActivateWindow(addonbrowser)"),
             ("Kodi settings", "ActivateWindow(settings)"),
+            ("Home list shortcut", "RunPlugin(plugin://plugin.video.mdm.flix/?action=library_home_list_choose)"),
+            ("Home accent colour", "accent"),
         )
         choice = xbmcgui.Dialog().select("Settings", [label for label, _ in options])
         if not 0 <= choice < len(options):
             return
         action = options[choice][1]
-        if action not in ("choose", "flix_settings"):
+        if action not in ("choose", "flix_settings", "accent"):
             xbmc.executebuiltin(action)
             return
+    accent = xbmc.getInfoLabel("Skin.String("+ACCENT_SETTING+")").upper()
+    if not valid_accent(accent):
+        accent = ACCENTS[0][1]
+    if action == "accent":
+        choose_accent(accent)
+        return
+    apply_accent(accent)
     try:
         flix = xbmcaddon.Addon("plugin.video.mdm.flix")
         if action == "flix_settings":
