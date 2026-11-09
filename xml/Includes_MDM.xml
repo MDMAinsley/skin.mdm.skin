@@ -4,6 +4,10 @@
     <value condition="!String.IsEmpty(Window(home).Property(mdm_home_list_label))">$INFO[Window(home).Property(mdm_home_list_label)]</value>
     <value>My List</value>
   </variable>
+  <variable name="MDMHomeRepositoryLabel">
+    <value condition="!String.IsEmpty(Window(home).Property(mdm_home_repository_label))">$INFO[Window(home).Property(mdm_home_repository_label)]</value>
+    <value>MDM Repo</value>
+  </variable>
   <variable name="MDMHomeAccent">
     <value condition="!String.IsEmpty(Window(home).Property(mdm_home_accent))">$INFO[Window(home).Property(mdm_home_accent)]</value>
     <value>FFE50914</value>

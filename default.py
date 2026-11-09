@@ -20,6 +20,11 @@ ACCENTS = (
     ("Gold", "EAB64D"),
 )
 ACCENT_SETTING = "mdm_home_accent"
+REPO_SETTING = "device_mdm_home_repository"
+REPOSITORIES = {
+    "repository.mdm.repo": "Public",
+    "repository.mdm.repo.dev": "Dev",
+}
 
 
 def luminance(rgb):
@@ -58,6 +63,38 @@ def choose_accent(current):
     apply_accent(accent)
 
 
+def repository_shortcut(action):
+    enabled = [repo for repo in REPOSITORIES
+               if xbmc.getCondVisibility(f"System.AddonIsEnabled({repo})")]
+    saved = xbmc.getInfoLabel(f"Skin.String({REPO_SETTING})")
+    repo = saved if saved in REPOSITORIES else next(iter(enabled), None)
+
+    if action == "choose_repository":
+        options = list(REPOSITORIES)
+        labels = [
+            f"MDM Repo ({REPOSITORIES[option]})" + ("" if option in enabled else " — unavailable")
+            for option in options
+        ]
+        choice = xbmcgui.Dialog().select(
+            "Home repository shortcut", ["Automatic"] + labels,
+            preselect=options.index(saved) + 1 if saved in options else 0,
+        )
+        if 0 <= choice <= len(options):
+            saved = options[choice - 1] if choice else "auto"
+            xbmc.executebuiltin(f"Skin.SetString({REPO_SETTING},{saved})", True)
+            repo = saved if saved in REPOSITORIES else next(iter(enabled), None)
+
+    label = f"MDM Repo ({REPOSITORIES[repo]})" if repo else "MDM Repo"
+    xbmcgui.Window(10000).setProperty("mdm_home_repository_label", label)
+    if action == "open_repository":
+        if repo in enabled:
+            xbmc.executebuiltin(f"ActivateWindow(addonbrowser,addons://{repo}/,return)")
+        else:
+            target = label if repo else "an MDM repository"
+            xbmcgui.Dialog().ok("MDM Repo", f"Install or enable {target} in Kodi Add-ons, or change the shortcut in MDM Settings.")
+            xbmc.executebuiltin("ActivateWindow(addonbrowser)")
+
+
 def run():
     if xbmc.getSkinDir() != "skin.mdm.skin":
         return
@@ -72,14 +109,18 @@ def run():
             ("Kodi settings", "ActivateWindow(settings)"),
             ("Home list shortcut", "RunPlugin(plugin://plugin.video.mdm.flix/?action=library_home_list_choose)"),
             ("Home accent colour", "accent"),
+            ("Home repository shortcut", "choose_repository"),
         )
         choice = xbmcgui.Dialog().select("Settings", [label for label, _ in options])
         if not 0 <= choice < len(options):
             return
         action = options[choice][1]
-        if action not in ("choose", "flix_settings", "accent"):
+        if action not in ("choose", "flix_settings", "accent", "choose_repository"):
             xbmc.executebuiltin(action)
             return
+    repository_shortcut(action)
+    if action in ("choose_repository", "open_repository"):
+        return
     accent = xbmc.getInfoLabel("Skin.String("+ACCENT_SETTING+")").upper()
     if not valid_accent(accent):
         accent = ACCENTS[0][1]
