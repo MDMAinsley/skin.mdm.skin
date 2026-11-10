@@ -153,7 +153,7 @@ def run():
     if mode not in ("Auto", "Basic", "Artwork"):
         mode = "Auto"
     if action == "choose":
-        options = ["Auto — " + ("artwork" if automatic else "basic") + " (" + reason + ")", "Basic — no home widgets", "Artwork — two poster rows"]
+        options = ["Auto — " + ("artwork" if automatic else "basic") + " (" + reason + ")", "Basic — no home widgets", "Artwork — featured titles and Home rows"]
         choice = xbmcgui.Dialog().select("MDM Home mode", options)
         if choice < 0:
             return

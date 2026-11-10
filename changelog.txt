@@ -1,3 +1,6 @@
+0.3.7
+Add a featured title area, Continue Watching and the selected Home list to Artwork mode.
+
 0.3.6
 Refresh also requests an MDBList viewing progress update when sync is enabled in Flix.
 

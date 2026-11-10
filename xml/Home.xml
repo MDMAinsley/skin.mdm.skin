@@ -5,7 +5,10 @@
   <onload>RunPlugin(plugin://plugin.video.mdm.flix/?action=library_home_list_label)</onload>
   <backgroundcolor>FF101014</backgroundcolor>
   <controls>
-    <include condition="Skin.HasSetting(device_mdm_artwork)">MDMArtworkHome</include>
+    <control type="group">
+      <include>MDMArtworkHome</include>
+      <visible>Skin.HasSetting(device_mdm_artwork)</visible>
+    </control>
     <include>MDMInstalledVersions</include>
     <control type="label">
       <left>60</left>
@@ -33,7 +36,7 @@
       <font>font45</font>
       <label>Browse something worth watching.</label>
       <textcolor>FFFFFFFF</textcolor>
-      <visible>!Control.HasFocus(5100) + !Control.HasFocus(5200)</visible>
+      <visible>!Skin.HasSetting(device_mdm_artwork)</visible>
     </control>
     <control type="label">
       <left>420</left>
@@ -43,7 +46,7 @@
       <font>font14</font>
       <label>Pick up where you left off, or find something new.</label>
       <textcolor>FFFFFFFF</textcolor>
-      <visible>!Control.HasFocus(5100) + !Control.HasFocus(5200)</visible>
+      <visible>!Skin.HasSetting(device_mdm_artwork)</visible>
     </control>
     <control type="label">
       <left>420</left>
@@ -83,9 +86,11 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=continue_watching,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">103</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">103</onright>
     </control>
     <control type="button" id="105">
       <left>60</left>
@@ -104,9 +109,11 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home_list,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">105</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">105</onright>
     </control>
     <control type="button" id="102">
       <left>60</left>
@@ -125,9 +132,11 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">102</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">102</onright>
     </control>
     <control type="button" id="100">
       <left>60</left>
@@ -147,8 +156,10 @@
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=movies,return)</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">100</onright>
     </control>
     <control type="button" id="101">
       <left>60</left>
@@ -167,9 +178,11 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=tvshows,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">101</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)]">101</onright>
     </control>
     <control type="button" id="110">
       <left>60</left>
@@ -190,9 +203,11 @@
       <onclick>UpdateAddonRepos()</onclick>
       <onclick>RunPlugin(plugin://plugin.video.mdm.flix/?action=mdblist_home_refresh)</onclick>
       <onclick>ReloadSkin()</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">110</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">110</onright>
     </control>
     <control type="button" id="113">
       <left>60</left>
@@ -211,9 +226,11 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>RunScript(special://skin/default.py,open_repository)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">113</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">113</onright>
     </control>
     <control type="button" id="107">
       <left>60</left>
@@ -232,9 +249,11 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>RunScript(special://skin/default.py,settings_menu)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">107</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">107</onright>
     </control>
     <control type="button" id="112">
       <left>60</left>
@@ -254,9 +273,11 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>ActivateWindow(shutdownmenu)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">112</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">112</onright>
     </control>
     <control type="button" id="111">
       <left>60</left>
@@ -276,9 +297,11 @@
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>Action(FullScreen)</onclick>
       <visible>Player.HasMedia</visible>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">111</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
+      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
+      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">111</onright>
     </control>
   </controls>
 </window>
