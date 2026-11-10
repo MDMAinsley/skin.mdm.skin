@@ -1,3 +1,6 @@
+0.3.9
+Smooth the menu-to-row handoff and open the dedicated Flix title view from Artwork Home.
+
 0.3.8
 Focus the active Home row in a larger browsing view, with one selection outline and predictable remote navigation.
 

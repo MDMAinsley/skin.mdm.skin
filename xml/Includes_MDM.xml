@@ -128,6 +128,8 @@
       <orientation>horizontal</orientation>
       <scrolltime tween="quadratic" easing="out">145</scrolltime>
       <onright>noop</onright>
+      <onfocus>SetProperty(mdm_home_last_rail,$PARAM[rail],home)</onfocus>
+      <onclick condition="!String.IsEmpty(ListItem.Property(mdm_home_title))">RunPlugin($INFO[ListItem.Property(mdm_home_title)])</onclick>
       <visible>true</visible>
       <itemlayout width="205" height="141">
         <include>MDMHomeCard</include>
@@ -158,9 +160,10 @@
   <include name="MDMHomeRailMotion">
     <definition>
       <!-- Keep directories and focus targets alive while their rail is off screen. -->
-      <animation effect="fade" start="100" end="0" time="105" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
-      <animation effect="slide" start="0,0" end="2000,0" time="0" delay="105" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
-      <animation effect="slide" end="-178,$PARAM[shift]" time="165" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <animation effect="fade" start="100" end="0" time="85" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
+      <animation effect="slide" end="2000,0" time="0" delay="85" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
+      <animation effect="fade" start="0" end="100" time="85" delay="170" reversible="false" condition="!$EXP[mdm_home_browsing] + !String.IsEqual(Window(home).Property(mdm_home_last_rail),$PARAM[rail])">Conditional</animation>
+      <animation effect="slide" end="-178,$PARAM[shift]" time="170" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
     </definition>
   </include>
 
@@ -170,88 +173,57 @@
     <value>$INFO[ListItem.Art(poster)]</value>
   </variable>
   <include name="MDMArtworkHome">
+    <control type="image">
+      <left>1435</left>
+      <top>125</top>
+      <width>416</width>
+      <height>234</height>
+      <aspectratio>keep</aspectratio>
+      <fadetime>135</fadetime>
+      <texture background="true">$VAR[MDMFeaturedArt]</texture>
+      <animation effect="zoom" start="100" end="205" center="1851,125" time="170" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+    </control>
     <control type="group">
-      <visible>!$EXP[mdm_home_browsing]</visible>
-      <control type="image">
-        <left>1040</left>
-        <top>133</top>
-        <width>820</width>
-        <height>223</height>
-        <aspectratio align="right">keep</aspectratio>
-        <fadetime>135</fadetime>
-        <texture background="true">$VAR[MDMFeaturedArt]</texture>
-      </control>
+      <animation effect="slide" end="-340,56" time="170" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
       <control type="label">
         <left>420</left>
-        <top>133</top>
-        <width>575</width>
-        <height>35</height>
+        <top>124</top>
+        <width>780</width>
+        <height>34</height>
         <font>font10</font>
         <textcolor>FFC8C8CE</textcolor>
         <label>$VAR[MDMFeaturedSection]</label>
-        <visible>Integer.IsGreater(Container(5300).NumItems,0) | Integer.IsGreater(Container(5400).NumItems,0) | Integer.IsGreater(Container(5100).NumItems,0) | Integer.IsGreater(Container(5200).NumItems,0)</visible>
-      </control>
-      <control type="label">
-        <left>420</left>
-        <top>171</top>
-        <width>595</width>
-        <height>63</height>
-        <font>font45</font>
-        <textcolor>FFFFFFFF</textcolor>
-        <label>$VAR[MDMFeaturedTitle]</label>
-        <scroll>true</scroll>
       </control>
       <control type="textbox">
         <left>420</left>
-        <top>242</top>
-        <width>595</width>
-        <height>112</height>
+        <top>160</top>
+        <width>800</width>
+        <height>85</height>
+        <font>font36_title</font>
+        <textcolor>FFFFFFFF</textcolor>
+        <label>$VAR[MDMFeaturedTitle]</label>
+      </control>
+      <control type="textbox">
+        <left>420</left>
+        <top>250</top>
+        <width>790</width>
+        <height>108</height>
         <font>font12</font>
         <textcolor>FFE2E2E6</textcolor>
         <label>$VAR[MDMFeaturedPlot]</label>
       </control>
     </control>
-
-    <control type="group">
+    <control type="label">
+      <left>242</left>
+      <top>897</top>
+      <width>1435</width>
+      <height>36</height>
+      <font>font10</font>
+      <textcolor>FFC8C8CE</textcolor>
+      <label>Up or down to change rows  ·  Back to menu</label>
       <visible>$EXP[mdm_home_browsing]</visible>
-      <animation effect="fade" start="0" end="100" time="165">Visible</animation>
-      <control type="image">
-        <left>970</left>
-        <top>150</top>
-        <width>880</width>
-        <height>495</height>
-        <aspectratio>keep</aspectratio>
-        <fadetime>135</fadetime>
-        <texture background="true">$VAR[MDMFeaturedArt]</texture>
-      </control>
-      <control type="textbox">
-        <left>80</left>
-        <top>225</top>
-        <width>820</width>
-        <height>122</height>
-        <font>font45</font>
-        <textcolor>FFFFFFFF</textcolor>
-        <label>$VAR[MDMFeaturedTitle]</label>
-      </control>
-      <control type="textbox">
-        <left>80</left>
-        <top>373</top>
-        <width>800</width>
-        <height>230</height>
-        <font>font13</font>
-        <textcolor>FFE2E2E6</textcolor>
-        <label>$VAR[MDMFeaturedPlot]</label>
-      </control>
-      <control type="label">
-        <left>242</left>
-        <top>897</top>
-        <width>1435</width>
-        <height>36</height>
-        <font>font10</font>
-        <textcolor>FFC8C8CE</textcolor>
-        <label>Up or down to change rows  ·  Back to menu</label>
-      </control>
     </control>
+
     <control type="group">
       <left>420</left>
       <top>363</top>
@@ -415,10 +387,10 @@
   </include>
 
   <variable name="MDMFeaturedSection">
-    <value condition="Control.HasFocus(103)">CONTINUE WATCHING</value>
-    <value condition="Control.HasFocus(105)">$VAR[MDMHomeListLabel]</value>
-    <value condition="Control.HasFocus(100)">TRENDING FILMS</value>
-    <value condition="Control.HasFocus(101)">TRENDING TV</value>
+    <value condition="[Control.HasFocus(103) | Control.HasFocus(5300)] + Integer.IsGreater(Container(5300).NumItems,0)">CONTINUE WATCHING</value>
+    <value condition="[Control.HasFocus(105) | Control.HasFocus(5400)] + Integer.IsGreater(Container(5400).NumItems,0)">$VAR[MDMHomeListLabel]</value>
+    <value condition="[Control.HasFocus(100) | Control.HasFocus(5100)] + Integer.IsGreater(Container(5100).NumItems,0)">TRENDING FILMS</value>
+    <value condition="[Control.HasFocus(101) | Control.HasFocus(5200)] + Integer.IsGreater(Container(5200).NumItems,0)">TRENDING TV</value>
     <value>FEATURED</value>
   </variable>
   <variable name="MDMFeaturedTitle">
