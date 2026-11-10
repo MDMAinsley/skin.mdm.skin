@@ -1,3 +1,6 @@
+0.3.8
+Focus the active Home row in a larger browsing view, with one selection outline and predictable remote navigation.
+
 0.3.7
 Add a featured title area, Continue Watching and the selected Home list to Artwork mode.
 

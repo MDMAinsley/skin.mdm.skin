@@ -68,240 +68,208 @@
       <textcolor>FFFFFFFF</textcolor>
       <visible>!Skin.HasSetting(device_mdm_artwork)</visible>
     </control>
-    <control type="button" id="103">
-      <left>60</left>
-      <top>155</top>
-      <width>340</width>
-      <height>57</height>
-      <label>Continue Watching</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup condition="Player.HasMedia">111</onup>
-      <onup condition="!Player.HasMedia">112</onup>
-      <ondown>105</ondown>
-      <onleft>103</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=continue_watching,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">103</onright>
-    </control>
-    <control type="button" id="105">
-      <left>60</left>
-      <top>220</top>
-      <width>340</width>
-      <height>57</height>
-      <label>$VAR[MDMHomeListLabel]</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>103</onup>
-      <ondown>102</ondown>
-      <onleft>105</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home_list,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">105</onright>
-    </control>
-    <control type="button" id="102">
-      <left>60</left>
-      <top>285</top>
-      <width>340</width>
-      <height>57</height>
-      <label>Search</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>105</onup>
-      <ondown>100</ondown>
-      <onleft>102</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">102</onright>
-    </control>
-    <control type="button" id="100">
-      <left>60</left>
-      <top>350</top>
-      <width>340</width>
-      <height>57</height>
-      <label>Films</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>102</onup>
-      <ondown>101</ondown>
-      <onleft>100</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=movies,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">100</onright>
-    </control>
-    <control type="button" id="101">
-      <left>60</left>
-      <top>415</top>
-      <width>340</width>
-      <height>57</height>
-      <label>TV</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>100</onup>
-      <ondown>110</ondown>
-      <onleft>101</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=tvshows,return)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)]">101</onright>
-    </control>
-    <control type="button" id="110">
-      <left>60</left>
-      <top>505</top>
-      <width>340</width>
-      <height>57</height>
-      <label>Refresh</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>101</onup>
-      <ondown>113</ondown>
-      <onleft>110</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>UpdateAddonRepos()</onclick>
-      <onclick>RunPlugin(plugin://plugin.video.mdm.flix/?action=mdblist_home_refresh)</onclick>
-      <onclick>ReloadSkin()</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">110</onright>
-    </control>
-    <control type="button" id="113">
-      <left>60</left>
-      <top>570</top>
-      <width>340</width>
-      <height>57</height>
-      <label>$VAR[MDMHomeRepositoryLabel]</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>110</onup>
-      <ondown>107</ondown>
-      <onleft>113</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>RunScript(special://skin/default.py,open_repository)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">113</onright>
-    </control>
-    <control type="button" id="107">
-      <left>60</left>
-      <top>635</top>
-      <width>340</width>
-      <height>57</height>
-      <label>Settings</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>113</onup>
-      <ondown>112</ondown>
-      <onleft>107</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>RunScript(special://skin/default.py,settings_menu)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">107</onright>
-    </control>
-    <control type="button" id="112">
-      <left>60</left>
-      <top>700</top>
-      <width>340</width>
-      <height>57</height>
-      <label>Power</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>107</onup>
-      <ondown condition="Player.HasMedia">111</ondown>
-      <ondown condition="!Player.HasMedia">103</ondown>
-      <onleft>112</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>ActivateWindow(shutdownmenu)</onclick>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">112</onright>
-    </control>
-    <control type="button" id="111">
-      <left>60</left>
-      <top>765</top>
-      <width>340</width>
-      <height>57</height>
-      <label>Now playing</label>
-      <font>font13</font>
-      <textoffsetx>20</textoffsetx>
-      <aligny>center</aligny>
-      <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-      <onup>112</onup>
-      <ondown>103</ondown>
-      <onleft>111</onleft>
-      <onback>103</onback>
-      <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
-      <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-      <onclick>Action(FullScreen)</onclick>
-      <visible>Player.HasMedia</visible>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">5400</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</onright>
-      <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</onright>
-      <onright condition="!Skin.HasSetting(device_mdm_artwork) | [!Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)]">111</onright>
+    <control type="group">
+      <animation effect="slide" end="-420,0" time="165" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <animation effect="fade" start="100" end="0" time="130" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <control type="button" id="103">
+        <left>60</left>
+        <top>155</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Continue Watching</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup condition="Player.HasMedia">111</onup>
+        <onup condition="!Player.HasMedia">112</onup>
+        <ondown>105</ondown>
+        <onleft>103</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=continue_watching,return)</onclick>
+        <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
+        <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5300).NumItems,0)">noop</onright>
+      </control>
+      <control type="button" id="105">
+        <left>60</left>
+        <top>220</top>
+        <width>340</width>
+        <height>57</height>
+        <label>$VAR[MDMHomeListLabel]</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>103</onup>
+        <ondown>102</ondown>
+        <onleft>105</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home_list,return)</onclick>
+        <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0)">5400</onright>
+        <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5400).NumItems,0)">noop</onright>
+      </control>
+      <control type="button" id="102">
+        <left>60</left>
+        <top>285</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Search</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>105</onup>
+        <ondown>100</ondown>
+        <onleft>102</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search,return)</onclick>
+        <onright>noop</onright>
+      </control>
+      <control type="button" id="100">
+        <left>60</left>
+        <top>350</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Films</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>102</onup>
+        <ondown>101</ondown>
+        <onleft>100</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=movies,return)</onclick>
+        <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
+        <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5100).NumItems,0)">noop</onright>
+      </control>
+      <control type="button" id="101">
+        <left>60</left>
+        <top>415</top>
+        <width>340</width>
+        <height>57</height>
+        <label>TV</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>100</onup>
+        <ondown>110</ondown>
+        <onleft>101</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=tvshows,return)</onclick>
+        <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
+        <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5200).NumItems,0)">noop</onright>
+      </control>
+      <control type="button" id="110">
+        <left>60</left>
+        <top>505</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Refresh</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>101</onup>
+        <ondown>113</ondown>
+        <onleft>110</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>UpdateAddonRepos()</onclick>
+        <onclick>RunPlugin(plugin://plugin.video.mdm.flix/?action=mdblist_home_refresh)</onclick>
+        <onclick>ReloadSkin()</onclick>
+        <onright>noop</onright>
+      </control>
+      <control type="button" id="113">
+        <left>60</left>
+        <top>570</top>
+        <width>340</width>
+        <height>57</height>
+        <label>$VAR[MDMHomeRepositoryLabel]</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>110</onup>
+        <ondown>107</ondown>
+        <onleft>113</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>RunScript(special://skin/default.py,open_repository)</onclick>
+        <onright>noop</onright>
+      </control>
+      <control type="button" id="107">
+        <left>60</left>
+        <top>635</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Settings</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>113</onup>
+        <ondown>112</ondown>
+        <onleft>107</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>RunScript(special://skin/default.py,settings_menu)</onclick>
+        <onright>noop</onright>
+      </control>
+      <control type="button" id="112">
+        <left>60</left>
+        <top>700</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Power</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>107</onup>
+        <ondown condition="Player.HasMedia">111</ondown>
+        <ondown condition="!Player.HasMedia">103</ondown>
+        <onleft>112</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>ActivateWindow(shutdownmenu)</onclick>
+        <onright>noop</onright>
+      </control>
+      <control type="button" id="111">
+        <left>60</left>
+        <top>765</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Now playing</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>112</onup>
+        <ondown>103</ondown>
+        <onleft>111</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>Action(FullScreen)</onclick>
+        <visible>Player.HasMedia</visible>
+        <onright>noop</onright>
+      </control>
     </control>
   </controls>
 </window>
