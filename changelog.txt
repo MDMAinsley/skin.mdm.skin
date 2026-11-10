@@ -1,3 +1,6 @@
+0.3.11
+Recover missing Home artwork with layered poster, still and backdrop fallbacks.
+
 0.3.10
 Coordinate the Home menu and selected row transitions so inactive rows fade before they move.
 
