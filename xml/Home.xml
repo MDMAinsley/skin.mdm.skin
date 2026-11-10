@@ -188,6 +188,7 @@
       <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
       <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
       <onclick>UpdateAddonRepos()</onclick>
+      <onclick>RunPlugin(plugin://plugin.video.mdm.flix/?action=mdblist_home_refresh)</onclick>
       <onclick>ReloadSkin()</onclick>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
       <onright condition="Skin.HasSetting(device_mdm_artwork) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
