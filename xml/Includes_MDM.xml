@@ -159,11 +159,11 @@
 
   <include name="MDMHomeRailMotion">
     <definition>
-      <!-- Keep directories and focus targets alive while their rail is off screen. -->
-      <animation effect="fade" start="100" end="0" time="85" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
-      <animation effect="slide" end="2000,0" time="0" delay="85" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
-      <animation effect="fade" start="0" end="100" time="85" delay="170" reversible="false" condition="!$EXP[mdm_home_browsing] + !String.IsEqual(Window(home).Property(mdm_home_last_rail),$PARAM[rail])">Conditional</animation>
-      <animation effect="slide" end="-178,$PARAM[shift]" time="170" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <!-- Fade inactive rails in place before the shared movement starts. Reverse travel has no lead-in delay. -->
+      <animation effect="fade" start="100" end="0" time="70" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
+      <animation effect="slide" end="2000,0" time="0" delay="70" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
+      <animation effect="fade" start="0" end="100" time="95" delay="225" reversible="false" condition="!$EXP[mdm_home_browsing] + !String.IsEqual(Window(home).Property(mdm_home_last_rail),$PARAM[rail])">Conditional</animation>
+      <animation effect="slide" end="-178,$PARAM[shift]" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
     </definition>
   </include>
 
@@ -181,10 +181,10 @@
       <aspectratio>keep</aspectratio>
       <fadetime>135</fadetime>
       <texture background="true">$VAR[MDMFeaturedArt]</texture>
-      <animation effect="zoom" start="100" end="205" center="1851,125" time="170" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <animation effect="zoom" start="100" end="205" center="1851,125" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
     </control>
     <control type="group">
-      <animation effect="slide" end="-340,56" time="170" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <animation effect="slide" end="-340,56" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
       <control type="label">
         <left>420</left>
         <top>124</top>
@@ -222,6 +222,7 @@
       <textcolor>FFC8C8CE</textcolor>
       <label>Up or down to change rows  ·  Back to menu</label>
       <visible>$EXP[mdm_home_browsing]</visible>
+      <animation effect="fade" start="0" end="100" time="95" delay="295" reversible="false">Visible</animation>
     </control>
 
     <control type="group">

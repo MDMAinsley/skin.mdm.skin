@@ -69,8 +69,10 @@
       <visible>!Skin.HasSetting(device_mdm_artwork)</visible>
     </control>
     <control type="group">
-      <animation effect="slide" end="-420,0" time="165" tween="quadratic" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
-      <animation effect="fade" start="100" end="0" time="130" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <animation type="Conditional" condition="$EXP[mdm_home_browsing]">
+        <effect type="slide" end="-420,0" time="225" delay="70" tween="sine" easing="inout" />
+        <effect type="fade" start="100" end="0" time="225" delay="70" tween="sine" easing="inout" />
+      </animation>
       <control type="button" id="103">
         <left>60</left>
         <top>155</top>
