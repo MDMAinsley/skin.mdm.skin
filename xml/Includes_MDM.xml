@@ -89,7 +89,7 @@
       <param name="top" value="76" />
     </include>
   </include>
-  <expression name="mdm_home_browsing">Control.HasFocus(5300) | Control.HasFocus(5400) | Control.HasFocus(5100) | Control.HasFocus(5200)</expression>
+  <expression name="mdm_home_browsing">Control.HasFocus(5300) | Control.HasFocus(5500) | Control.HasFocus(5400) | Control.HasFocus(5100) | Control.HasFocus(5200)</expression>
 
   <include name="MDMHomeCard">
     <control type="image">
@@ -168,13 +168,18 @@
     </definition>
   </include>
 
+  <expression name="mdm_home_has_next">Integer.IsGreater(Container(5500).NumItems,0)</expression>
+
   <include name="MDMHomeRailMotion">
+    <param name="after_next" default="false" />
+    <param name="shift_with_next" default="0" />
     <definition>
       <!-- Fade inactive rails in place before the shared movement starts. Reverse travel has no lead-in delay. -->
       <animation effect="fade" start="100" end="0" time="70" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
       <animation effect="slide" end="2000,0" time="0" delay="70" reversible="false" condition="$EXP[mdm_home_browsing] + !Control.HasFocus($PARAM[rail])">Conditional</animation>
       <animation effect="fade" start="0" end="100" time="95" delay="225" reversible="false" condition="!$EXP[mdm_home_browsing] + !String.IsEqual(Window(home).Property(mdm_home_last_rail),$PARAM[rail])">Conditional</animation>
-      <animation effect="slide" end="-178,$PARAM[shift]" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
+      <animation effect="slide" end="-178,$PARAM[shift]" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing] + [!$PARAM[after_next] | !$EXP[mdm_home_has_next]]">Conditional</animation>
+      <animation effect="slide" end="-178,$PARAM[shift_with_next]" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing] + $PARAM[after_next] + $EXP[mdm_home_has_next]">Conditional</animation>
     </definition>
   </include>
 
@@ -278,10 +283,11 @@
         <onback>103</onback>
         <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">SetProperty(mdm_preview_fullscreen,$INFO[Window(home).Property(mdm_preview_active)],home)</onup>
         <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active))">noop</onup>
-        <ondown condition="Integer.IsGreater(Container(5400).NumItems,0)">5400</ondown>
-        <ondown condition="Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</ondown>
-        <ondown condition="Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</ondown>
-        <ondown condition="!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)">noop</ondown>
+        <ondown condition="Integer.IsGreater(Container(5500).NumItems,0)">5500</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5500).NumItems,0) + Integer.IsGreater(Container(5400).NumItems,0)">5400</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5500).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + Integer.IsGreater(Container(5100).NumItems,0)">5100</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5500).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5500).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)">noop</ondown>
         <content target="videos" limit="12" browse="never">$VAR[MDMWidgetContinueURL]</content>
       </control>
       <control type="label">
@@ -299,8 +305,44 @@
       <left>420</left>
       <top>535</top>
       <include content="MDMHomeRailMotion">
+        <param name="rail" value="5500" />
+        <param name="shift" value="155" />
+      </include>
+      <control type="label">
+        <left>0</left>
+        <top>0</top>
+        <width>1400</width>
+        <height>31</height>
+        <font>font27</font>
+        <textcolor>FFFFFFFF</textcolor>
+        <label>Next Episodes</label>
+        <visible>$EXP[mdm_home_has_next]</visible>
+      </control>
+      <control type="list" id="5500">
+        <include content="MDMHomeRailLayout">
+          <param name="rail" value="5500" />
+        </include>
+        <onleft>114</onleft>
+        <onback>114</onback>
+        <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">SetProperty(mdm_preview_fullscreen,$INFO[Window(home).Property(mdm_preview_active)],home)</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5300).NumItems,0)">noop</onup>
+        <ondown condition="Integer.IsGreater(Container(5400).NumItems,0)">5400</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5400).NumItems,0) + Integer.IsGreater(Container(5100).NumItems,0)">5100</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)">noop</ondown>
+        <content target="videos" limit="12" browse="never">$VAR[MDMWidgetNextURL]</content>
+      </control>
+    </control>
+    <control type="group">
+      <left>420</left>
+      <top>535</top>
+      <animation effect="slide" end="0,172" time="0" condition="$EXP[mdm_home_has_next]">Conditional</animation>
+      <include content="MDMHomeRailMotion">
         <param name="rail" value="5400" />
         <param name="shift" value="155" />
+        <param name="after_next" value="true" />
+        <param name="shift_with_next" value="-17" />
       </include>
       <control type="label">
         <left>0</left>
@@ -318,10 +360,11 @@
         <onleft>105</onleft>
         <onback>105</onback>
         <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">SetProperty(mdm_preview_fullscreen,$INFO[Window(home).Property(mdm_preview_active)],home)</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5300).NumItems,0)]">5300</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [!Integer.IsGreater(Container(5300).NumItems,0)]">noop</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + Integer.IsGreater(Container(5500).NumItems,0)">5500</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5500).NumItems,0) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5500).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">noop</onup>
         <ondown condition="Integer.IsGreater(Container(5100).NumItems,0)">5100</ondown>
-        <ondown condition="Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</ondown>
+        <ondown condition="!Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5200).NumItems,0)">5200</ondown>
         <ondown condition="!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)">noop</ondown>
         <content target="videos" limit="12" browse="never">$VAR[MDMWidgetListURL]</content>
       </control>
@@ -339,9 +382,12 @@
     <control type="group">
       <left>420</left>
       <top>707</top>
+      <animation effect="slide" end="0,172" time="0" condition="$EXP[mdm_home_has_next]">Conditional</animation>
       <include content="MDMHomeRailMotion">
         <param name="rail" value="5100" />
         <param name="shift" value="-17" />
+        <param name="after_next" value="true" />
+        <param name="shift_with_next" value="-189" />
       </include>
       <control type="label">
         <left>0</left>
@@ -359,9 +405,10 @@
         <onleft>100</onleft>
         <onback>100</onback>
         <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">SetProperty(mdm_preview_fullscreen,$INFO[Window(home).Property(mdm_preview_active)],home)</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5400).NumItems,0)]">5400</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)]">5300</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)]">noop</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + Integer.IsGreater(Container(5400).NumItems,0)">5400</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5400).NumItems,0) + Integer.IsGreater(Container(5500).NumItems,0)">5500</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5500).NumItems,0) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5500).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">noop</onup>
         <ondown condition="Integer.IsGreater(Container(5200).NumItems,0)">5200</ondown>
         <ondown condition="!Integer.IsGreater(Container(5200).NumItems,0)">noop</ondown>
         <content target="videos" limit="12" browse="never">$VAR[MDMWidgetMovieURL]</content>
@@ -380,9 +427,12 @@
     <control type="group">
       <left>420</left>
       <top>879</top>
+      <animation effect="slide" end="0,172" time="0" condition="$EXP[mdm_home_has_next]">Conditional</animation>
       <include content="MDMHomeRailMotion">
         <param name="rail" value="5200" />
         <param name="shift" value="-189" />
+        <param name="after_next" value="true" />
+        <param name="shift_with_next" value="-361" />
       </include>
       <control type="label">
         <left>0</left>
@@ -400,10 +450,11 @@
         <onleft>101</onleft>
         <onback>101</onback>
         <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">SetProperty(mdm_preview_fullscreen,$INFO[Window(home).Property(mdm_preview_active)],home)</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5100).NumItems,0)]">5100</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)]">5400</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)]">5300</onup>
-        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)]">noop</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5100).NumItems,0) + Integer.IsGreater(Container(5400).NumItems,0)">5400</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + Integer.IsGreater(Container(5500).NumItems,0)">5500</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5500).NumItems,0) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5500).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">noop</onup>
         <ondown>noop</ondown>
         <content target="videos" limit="12" browse="never">$VAR[MDMWidgetTVURL]</content>
       </control>
@@ -422,6 +473,7 @@
 
   <variable name="MDMFeaturedSection">
     <value condition="[Control.HasFocus(103) | Control.HasFocus(5300)] + Integer.IsGreater(Container(5300).NumItems,0)">CONTINUE WATCHING</value>
+    <value condition="[Control.HasFocus(114) | Control.HasFocus(5500)] + $EXP[mdm_home_has_next]">NEXT EPISODES</value>
     <value condition="[Control.HasFocus(105) | Control.HasFocus(5400)] + Integer.IsGreater(Container(5400).NumItems,0)">$VAR[MDMHomeListLabel]</value>
     <value condition="[Control.HasFocus(100) | Control.HasFocus(5100)] + Integer.IsGreater(Container(5100).NumItems,0)">TRENDING FILMS</value>
     <value condition="[Control.HasFocus(101) | Control.HasFocus(5200)] + Integer.IsGreater(Container(5200).NumItems,0)">TRENDING TV</value>
@@ -429,10 +481,12 @@
   </variable>
   <variable name="MDMFeaturedTitle">
     <value condition="Control.HasFocus(5300)">$INFO[Container(5300).ListItem.Label]</value>
+    <value condition="Control.HasFocus(5500)">$INFO[Container(5500).ListItem.Label]</value>
     <value condition="Control.HasFocus(5400)">$INFO[Container(5400).ListItem.Label]</value>
     <value condition="Control.HasFocus(5100)">$INFO[Container(5100).ListItem.Label]</value>
     <value condition="Control.HasFocus(5200)">$INFO[Container(5200).ListItem.Label]</value>
     <value condition="Control.HasFocus(103) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label]</value>
+    <value condition="Control.HasFocus(114) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label]</value>
     <value condition="Control.HasFocus(105) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label]</value>
     <value condition="Control.HasFocus(100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label]</value>
     <value condition="Control.HasFocus(101) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label]</value>
@@ -444,10 +498,12 @@
   </variable>
   <variable name="MDMFeaturedPlot">
     <value condition="Control.HasFocus(5300)">$INFO[Container(5300).ListItem.Plot]</value>
+    <value condition="Control.HasFocus(5500)">$INFO[Container(5500).ListItem.Plot]</value>
     <value condition="Control.HasFocus(5400)">$INFO[Container(5400).ListItem.Plot]</value>
     <value condition="Control.HasFocus(5100)">$INFO[Container(5100).ListItem.Plot]</value>
     <value condition="Control.HasFocus(5200)">$INFO[Container(5200).ListItem.Plot]</value>
     <value condition="Control.HasFocus(103) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Plot]</value>
+    <value condition="Control.HasFocus(114) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Plot]</value>
     <value condition="Control.HasFocus(105) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Plot]</value>
     <value condition="Control.HasFocus(100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Plot]</value>
     <value condition="Control.HasFocus(101) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Plot]</value>
@@ -459,10 +515,12 @@
   </variable>
   <variable name="MDMFeaturedArt">
     <value condition="Control.HasFocus(5300)">$INFO[Container(5300).ListItem.Art(fanart)]</value>
+    <value condition="Control.HasFocus(5500)">$INFO[Container(5500).ListItem.Art(fanart)]</value>
     <value condition="Control.HasFocus(5400)">$INFO[Container(5400).ListItem.Art(fanart)]</value>
     <value condition="Control.HasFocus(5100)">$INFO[Container(5100).ListItem.Art(fanart)]</value>
     <value condition="Control.HasFocus(5200)">$INFO[Container(5200).ListItem.Art(fanart)]</value>
     <value condition="Control.HasFocus(103) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Art(fanart)]</value>
+    <value condition="Control.HasFocus(114) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Art(fanart)]</value>
     <value condition="Control.HasFocus(105) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Art(fanart)]</value>
     <value condition="Control.HasFocus(100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Art(fanart)]</value>
     <value condition="Control.HasFocus(101) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Art(fanart)]</value>
@@ -474,10 +532,12 @@
   </variable>
   <variable name="MDMFeaturedPoster">
     <value condition="Control.HasFocus(5300)">$INFO[Container(5300).ListItem.Art(poster)]</value>
+    <value condition="Control.HasFocus(5500)">$INFO[Container(5500).ListItem.Art(poster)]</value>
     <value condition="Control.HasFocus(5400)">$INFO[Container(5400).ListItem.Art(poster)]</value>
     <value condition="Control.HasFocus(5100)">$INFO[Container(5100).ListItem.Art(poster)]</value>
     <value condition="Control.HasFocus(5200)">$INFO[Container(5200).ListItem.Art(poster)]</value>
     <value condition="Control.HasFocus(103) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Art(poster)]</value>
+    <value condition="Control.HasFocus(114) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Art(poster)]</value>
     <value condition="Control.HasFocus(105) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Art(poster)]</value>
     <value condition="Control.HasFocus(100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Art(poster)]</value>
     <value condition="Control.HasFocus(101) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Art(poster)]</value>
@@ -489,10 +549,12 @@
   </variable>
   <variable name="MDMFeaturedThumb">
     <value condition="Control.HasFocus(5300)">$INFO[Container(5300).ListItem.Art(thumb)]</value>
+    <value condition="Control.HasFocus(5500)">$INFO[Container(5500).ListItem.Art(thumb)]</value>
     <value condition="Control.HasFocus(5400)">$INFO[Container(5400).ListItem.Art(thumb)]</value>
     <value condition="Control.HasFocus(5100)">$INFO[Container(5100).ListItem.Art(thumb)]</value>
     <value condition="Control.HasFocus(5200)">$INFO[Container(5200).ListItem.Art(thumb)]</value>
     <value condition="Control.HasFocus(103) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Art(thumb)]</value>
+    <value condition="Control.HasFocus(114) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Art(thumb)]</value>
     <value condition="Control.HasFocus(105) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Art(thumb)]</value>
     <value condition="Control.HasFocus(100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Art(thumb)]</value>
     <value condition="Control.HasFocus(101) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Art(thumb)]</value>
@@ -512,6 +574,10 @@
   </variable>
   <variable name="MDMWidgetContinueURL">
     <value condition="Skin.HasSetting(device_mdm_artwork) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=continue&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_continue_revision)]</value>
+    <value />
+  </variable>
+  <variable name="MDMWidgetNextURL">
+    <value condition="Skin.HasSetting(device_mdm_artwork) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=next&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_continue_revision)]</value>
     <value />
   </variable>
   <variable name="MDMWidgetListURL">

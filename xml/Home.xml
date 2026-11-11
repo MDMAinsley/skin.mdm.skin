@@ -85,7 +85,7 @@
         <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
         <onup condition="Player.HasMedia">111</onup>
         <onup condition="!Player.HasMedia">112</onup>
-        <ondown>105</ondown>
+        <ondown>114</ondown>
         <onleft>103</onleft>
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
@@ -94,9 +94,29 @@
         <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
         <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5300).NumItems,0)">noop</onright>
       </control>
-      <control type="button" id="105">
+      <control type="button" id="114">
         <left>60</left>
         <top>220</top>
+        <width>340</width>
+        <height>57</height>
+        <label>Next Episodes</label>
+        <font>font13</font>
+        <textoffsetx>20</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>103</onup>
+        <ondown>105</ondown>
+        <onleft>114</onleft>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=next_episodes,return)</onclick>
+        <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5500).NumItems,0)">5500</onright>
+        <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5500).NumItems,0)">noop</onright>
+      </control>
+      <control type="button" id="105">
+        <left>60</left>
+        <top>285</top>
         <width>340</width>
         <height>57</height>
         <label>$VAR[MDMHomeListLabel]</label>
@@ -104,7 +124,7 @@
         <textoffsetx>20</textoffsetx>
         <aligny>center</aligny>
         <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
-        <onup>103</onup>
+        <onup>114</onup>
         <ondown>102</ondown>
         <onleft>105</onleft>
         <onback>103</onback>
@@ -116,7 +136,7 @@
       </control>
       <control type="button" id="102">
         <left>60</left>
-        <top>285</top>
+        <top>350</top>
         <width>340</width>
         <height>57</height>
         <label>Search</label>
@@ -135,7 +155,7 @@
       </control>
       <control type="button" id="100">
         <left>60</left>
-        <top>350</top>
+        <top>415</top>
         <width>340</width>
         <height>57</height>
         <label>Films</label>
@@ -155,7 +175,7 @@
       </control>
       <control type="button" id="101">
         <left>60</left>
-        <top>415</top>
+        <top>480</top>
         <width>340</width>
         <height>57</height>
         <label>TV</label>
@@ -175,7 +195,7 @@
       </control>
       <control type="button" id="110">
         <left>60</left>
-        <top>505</top>
+        <top>570</top>
         <width>340</width>
         <height>57</height>
         <label>Refresh</label>
@@ -196,7 +216,7 @@
       </control>
       <control type="button" id="113">
         <left>60</left>
-        <top>570</top>
+        <top>635</top>
         <width>340</width>
         <height>57</height>
         <label>$VAR[MDMHomeRepositoryLabel]</label>
@@ -215,7 +235,7 @@
       </control>
       <control type="button" id="107">
         <left>60</left>
-        <top>635</top>
+        <top>700</top>
         <width>340</width>
         <height>57</height>
         <label>Settings</label>
@@ -234,7 +254,7 @@
       </control>
       <control type="button" id="112">
         <left>60</left>
-        <top>700</top>
+        <top>765</top>
         <width>340</width>
         <height>57</height>
         <label>Power</label>
@@ -254,7 +274,7 @@
       </control>
       <control type="button" id="111">
         <left>60</left>
-        <top>765</top>
+        <top>830</top>
         <width>340</width>
         <height>57</height>
         <label>Now playing</label>
