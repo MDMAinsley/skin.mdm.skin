@@ -1,3 +1,6 @@
+0.3.15
+Open fresh input when selecting Search from Home.
+
 0.3.14
 Add Auto, Full, Balanced, Light and Basic Home modes. Full enables automatic previews on manually selected devices.
 

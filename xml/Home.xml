@@ -130,7 +130,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search,return)</onclick>
+        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search&amp;input=1,return)</onclick>
         <onright>noop</onright>
       </control>
       <control type="button" id="100">
