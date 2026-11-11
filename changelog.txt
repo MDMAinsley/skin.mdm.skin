@@ -1,3 +1,9 @@
+0.3.14
+Add Auto, Full, Balanced, Light and Basic Home modes. Full enables automatic previews on manually selected devices.
+
+0.3.13
+Place previews in the featured artwork panel and route Up directly to the playing trailer.
+
 0.3.12
 Show muted Home previews and let Up take the playing trailer fullscreen.
 

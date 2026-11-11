@@ -100,7 +100,7 @@
       <left>4</left><top>4</top><width>184</width><height>104</height>
       <aspectratio>keep</aspectratio>
       <texture background="true">DefaultVideo.png</texture>
-      <visible>String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(thumb)) + String.IsEmpty(ListItem.Art(fanart))</visible>
+      <visible>String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(thumb)) + [String.IsEmpty(ListItem.Art(fanart)) | String.IsEqual(Window(home).Property(mdm_home_mode),Light)]</visible>
     </control>
     <control type="image">
       <left>4</left><top>4</top><width>184</width><height>104</height>
@@ -116,6 +116,7 @@
       <left>4</left><top>4</top><width>184</width><height>104</height>
       <aspectratio>keep</aspectratio>
       <texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+      <visible>!String.IsEqual(Window(home).Property(mdm_home_mode),Light)</visible>
     </control>
     <control type="label">
       <left>4</left>
@@ -197,6 +198,7 @@
       <aspectratio>keep</aspectratio>
       <fadetime>135</fadetime>
       <texture background="true">$VAR[MDMFeaturedArt]</texture>
+      <visible>!String.IsEqual(Window(home).Property(mdm_home_mode),Light)</visible>
     </control>
     </control>
     <control type="videowindow" id="5600">

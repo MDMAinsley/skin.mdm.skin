@@ -148,17 +148,30 @@ def run():
         light = xbmcaddon.Addon("plugin.video.mdm.flix").getSetting("device_artwork") == "Light"
     except RuntimeError:
         light = True
-    automatic, reason = recommend(memory, free, light)
+    artwork_recommended, _ = recommend(memory, free, light)
+    preview_recommended = not light and memory is not None and memory >= 6144
+    automatic = ("Full" if preview_recommended else "Balanced") if artwork_recommended else "Basic"
+    options = {
+        "Auto": "Auto — recommended: " + automatic,
+        "Full": "Full — artwork, rows and muted trailer previews",
+        "Balanced": "Balanced — artwork and rows",
+        "Light": "Light — simpler artwork and rows",
+        "Basic": "Basic — menu only",
+    }
     mode = xbmc.getInfoLabel("Skin.String(device_mdm_home_mode)")
-    if mode not in ("Auto", "Basic", "Artwork"):
+    if mode == "Artwork":
+        mode = "Full" if preview_recommended else "Balanced"
+    if mode not in options:
         mode = "Auto"
     if action == "choose":
-        options = ["Auto — " + ("artwork" if automatic else "basic") + " (" + reason + ")", "Basic — no home widgets", "Artwork — featured titles and Home rows"]
-        choice = xbmcgui.Dialog().select("MDM Home mode", options)
-        if choice < 0:
+        modes = list(options)
+        choice = xbmcgui.Dialog().select(
+            "MDM Home mode", list(options.values()), preselect=modes.index(mode),
+        )
+        if not 0 <= choice < len(modes):
             return
-        mode = ("Auto", "Basic", "Artwork")[choice]
-        xbmc.executebuiltin("Skin.SetString(device_mdm_home_mode," + mode + ")")
+        mode = modes[choice]
+        xbmc.executebuiltin(f"Skin.SetString(device_mdm_home_mode,{mode})", True)
     # Do not reload underneath Kodi's "keep this skin?" confirmation or another
     # modal dialog. If it remains open, this home visit stays in its current mode.
     monitor = xbmc.Monitor()
@@ -169,9 +182,11 @@ def run():
             return
     else:
         return
-    desired = automatic if mode == "Auto" else mode == "Artwork"
-    previews = desired and not light and memory is not None and memory >= 6144
-    xbmcgui.Window(10000).setProperty("mdm_preview_enabled", "true" if previews else "false")
+    effective = automatic if mode == "Auto" else mode
+    desired = effective != "Basic"
+    window = xbmcgui.Window(10000)
+    window.setProperty("mdm_home_mode", effective)
+    window.setProperty("mdm_preview_enabled", "true" if effective == "Full" else "false")
     current = xbmc.getCondVisibility("Skin.HasSetting(device_mdm_artwork)")
     if bool(current) != desired:
         xbmc.executebuiltin("Skin.SetBool(device_mdm_artwork)" if desired else "Skin.Reset(device_mdm_artwork)")
