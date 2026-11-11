@@ -1,3 +1,6 @@
+0.3.17
+Centre the trailer shortcut beneath the preview, with bold Press UP text and keyboard or Fire TV icons.
+
 0.3.16
 Add a Next Episodes row and sidebar entry directly below Continue Watching.
 

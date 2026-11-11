@@ -43,6 +43,27 @@ def apply_accent(accent):
     window.setProperty("mdm_home_accent_text", "FFFFFFFF" if luminance(accent)<=.179 else "FF000000")
 
 
+def set_trailer_key():
+    window = xbmcgui.Window(10000)
+    if xbmc.getCondVisibility("System.Platform.Android"):
+        if window.getProperty("mdm_trailer_key"):
+            return
+        import subprocess
+
+        try:
+            model = subprocess.check_output(
+                ["/system/bin/getprop", "ro.product.model"], text=True, timeout=1
+            ).strip()
+        except (OSError, subprocess.SubprocessError, UnicodeError):
+            model = ""
+        key = "firetv" if re.fullmatch(r"AFT[A-Z0-9]+", model) else "generic"
+    else:
+        desktop = any(xbmc.getCondVisibility("System.Platform." + platform)
+                      for platform in ("Windows", "OSX", "Linux"))
+        key = "keyboard" if desktop else "generic"
+    window.setProperty("mdm_trailer_key", key)
+
+
 def choose_accent(current):
     dialog = xbmcgui.Dialog()
     choice = dialog.select("Home accent colour",[name for name, _ in ACCENTS]+["Custom hex colour…"])
@@ -128,6 +149,7 @@ def run():
         choose_accent(accent)
         return
     apply_accent(accent)
+    set_trailer_key()
     try:
         flix = xbmcaddon.Addon("plugin.video.mdm.flix")
         if action == "flix_settings":

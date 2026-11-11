@@ -90,6 +90,12 @@
     </include>
   </include>
   <expression name="mdm_home_browsing">Control.HasFocus(5300) | Control.HasFocus(5500) | Control.HasFocus(5400) | Control.HasFocus(5100) | Control.HasFocus(5200)</expression>
+  <expression name="mdm_home_preview_visible">Player.HasVideo + $EXP[mdm_home_browsing] + !String.IsEmpty(Window(home).Property(mdm_preview_active))</expression>
+  <expression name="mdm_trailer_key_has_icon">String.IsEqual(Window(home).Property(mdm_trailer_key),keyboard) | String.IsEqual(Window(home).Property(mdm_trailer_key),firetv)</expression>
+  <variable name="MDMTrailerUpIcon">
+    <value condition="String.IsEqual(Window(home).Property(mdm_trailer_key),firetv)">mdm/up-firetv.png</value>
+    <value>mdm/up-keyboard.png</value>
+  </variable>
 
   <include name="MDMHomeCard">
     <control type="image">
@@ -208,7 +214,36 @@
     </control>
     <control type="videowindow" id="5600">
       <left>998</left><top>125</top><width>853</width><height>480</height>
-      <visible>Player.HasVideo + $EXP[mdm_home_browsing] + !String.IsEmpty(Window(home).Property(mdm_preview_active))</visible>
+      <visible>$EXP[mdm_home_preview_visible]</visible>
+    </control>
+    <control type="group">
+      <visible>$EXP[mdm_home_preview_visible]</visible>
+      <control type="grouplist" id="5601">
+        <left>998</left><top>617</top><width>853</width><height>42</height>
+        <orientation>horizontal</orientation><align>center</align><itemgap>10</itemgap>
+        <usecontrolcoords>true</usecontrolcoords>
+        <visible>$EXP[mdm_trailer_key_has_icon]</visible>
+        <control type="label">
+          <width>114</width><height>42</height>
+          <align>right</align><aligny>center</aligny><font>font12</font>
+          <label>[B]Press UP[/B]</label><textcolor>FFFFFFFF</textcolor>
+        </control>
+        <control type="image">
+          <top>6</top><width>30</width><height>30</height>
+          <aspectratio>keep</aspectratio><texture>$VAR[MDMTrailerUpIcon]</texture>
+        </control>
+        <control type="label">
+          <width>174</width><height>42</height>
+          <align>left</align><aligny>center</aligny><font>font12</font>
+          <label>to watch trailer</label><textcolor>FFFFFFFF</textcolor>
+        </control>
+      </control>
+      <control type="label">
+        <left>998</left><top>617</top><width>853</width><height>42</height>
+        <align>center</align><aligny>center</aligny><font>font12</font>
+        <label>[B]Press UP[/B] to watch trailer</label><textcolor>FFFFFFFF</textcolor>
+        <visible>!$EXP[mdm_trailer_key_has_icon]</visible>
+      </control>
     </control>
     <control type="group">
       <animation effect="slide" end="-340,56" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
@@ -254,7 +289,7 @@
     <control type="label">
       <left>242</left><top>897</top><width>1435</width><height>36</height>
       <font>font10</font><textcolor>FFC8C8CE</textcolor>
-      <label>Up to watch trailer  ·  Down to change rows  ·  Back to menu</label>
+      <label>Down to change rows  ·  Back to menu</label>
       <visible>$EXP[mdm_home_browsing] + !String.IsEmpty(Window(home).Property(mdm_preview_active))</visible>
       <animation effect="fade" start="0" end="100" time="95" delay="295" reversible="false">Visible</animation>
     </control>
