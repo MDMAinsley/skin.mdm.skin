@@ -170,6 +170,8 @@ def run():
     else:
         return
     desired = automatic if mode == "Auto" else mode == "Artwork"
+    previews = desired and not light and memory is not None and memory >= 6144
+    xbmcgui.Window(10000).setProperty("mdm_preview_enabled", "true" if previews else "false")
     current = xbmc.getCondVisibility("Skin.HasSetting(device_mdm_artwork)")
     if bool(current) != desired:
         xbmc.executebuiltin("Skin.SetBool(device_mdm_artwork)" if desired else "Skin.Reset(device_mdm_artwork)")

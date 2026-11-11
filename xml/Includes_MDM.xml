@@ -198,6 +198,10 @@
       <fadetime>135</fadetime>
       <texture background="true">$VAR[MDMFeaturedArt]</texture>
     </control>
+    <control type="videowindow" id="5600">
+      <left>1435</left><top>125</top><width>416</width><height>234</height>
+      <visible>Player.HasVideo + !String.IsEmpty(Window(home).Property(mdm_preview_active))</visible>
+    </control>
     </control>
     <control type="group">
       <animation effect="slide" end="-340,56" time="225" delay="70" tween="sine" easing="inout" condition="$EXP[mdm_home_browsing]">Conditional</animation>
@@ -237,7 +241,14 @@
       <font>font10</font>
       <textcolor>FFC8C8CE</textcolor>
       <label>Up or down to change rows  ·  Back to menu</label>
-      <visible>$EXP[mdm_home_browsing]</visible>
+      <visible>$EXP[mdm_home_browsing] + String.IsEmpty(Window(home).Property(mdm_preview_active))</visible>
+      <animation effect="fade" start="0" end="100" time="95" delay="295" reversible="false">Visible</animation>
+    </control>
+    <control type="label">
+      <left>242</left><top>897</top><width>1435</width><height>36</height>
+      <font>font10</font><textcolor>FFC8C8CE</textcolor>
+      <label>Up to watch trailer  ·  Down to change rows  ·  Back to menu</label>
+      <visible>$EXP[mdm_home_browsing] + !String.IsEmpty(Window(home).Property(mdm_preview_active))</visible>
       <animation effect="fade" start="0" end="100" time="95" delay="295" reversible="false">Visible</animation>
     </control>
 
@@ -263,7 +274,8 @@
         </include>
         <onleft>103</onleft>
         <onback>103</onback>
-        <onup>noop</onup>
+        <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">RunPlugin(plugin://plugin.video.mdm.flix/?action=trailer_fullscreen)</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active))">noop</onup>
         <ondown condition="Integer.IsGreater(Container(5400).NumItems,0)">5400</ondown>
         <ondown condition="Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5100</ondown>
         <ondown condition="Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</ondown>
@@ -303,8 +315,9 @@
         </include>
         <onleft>105</onleft>
         <onback>105</onback>
-        <onup condition="Integer.IsGreater(Container(5300).NumItems,0)">5300</onup>
-        <onup condition="!Integer.IsGreater(Container(5300).NumItems,0)">noop</onup>
+        <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">RunPlugin(plugin://plugin.video.mdm.flix/?action=trailer_fullscreen)</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5300).NumItems,0)]">5300</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [!Integer.IsGreater(Container(5300).NumItems,0)]">noop</onup>
         <ondown condition="Integer.IsGreater(Container(5100).NumItems,0)">5100</ondown>
         <ondown condition="Integer.IsGreater(Container(5200).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5200</ondown>
         <ondown condition="!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5200).NumItems,0)">noop</ondown>
@@ -343,9 +356,10 @@
         </include>
         <onleft>100</onleft>
         <onback>100</onback>
-        <onup condition="Integer.IsGreater(Container(5400).NumItems,0)">5400</onup>
-        <onup condition="Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5300</onup>
-        <onup condition="!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">noop</onup>
+        <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">RunPlugin(plugin://plugin.video.mdm.flix/?action=trailer_fullscreen)</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5400).NumItems,0)]">5400</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)]">5300</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [!Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)]">noop</onup>
         <ondown condition="Integer.IsGreater(Container(5200).NumItems,0)">5200</ondown>
         <ondown condition="!Integer.IsGreater(Container(5200).NumItems,0)">noop</ondown>
         <content target="videos" limit="12" browse="never">$VAR[MDMWidgetMovieURL]</content>
@@ -383,10 +397,11 @@
         </include>
         <onleft>101</onleft>
         <onback>101</onback>
-        <onup condition="Integer.IsGreater(Container(5100).NumItems,0)">5100</onup>
-        <onup condition="Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)">5400</onup>
-        <onup condition="Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)">5300</onup>
-        <onup condition="!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)">noop</onup>
+        <onup condition="!String.IsEmpty(Window(home).Property(mdm_preview_active))">RunPlugin(plugin://plugin.video.mdm.flix/?action=trailer_fullscreen)</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5100).NumItems,0)]">5100</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0)]">5400</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [Integer.IsGreater(Container(5300).NumItems,0) + !Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0)]">5300</onup>
+        <onup condition="String.IsEmpty(Window(home).Property(mdm_preview_active)) + [!Integer.IsGreater(Container(5100).NumItems,0) + !Integer.IsGreater(Container(5400).NumItems,0) + !Integer.IsGreater(Container(5300).NumItems,0)]">noop</onup>
         <ondown>noop</ondown>
         <content target="videos" limit="12" browse="never">$VAR[MDMWidgetTVURL]</content>
       </control>

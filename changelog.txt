@@ -1,3 +1,6 @@
+0.3.12
+Show muted Home previews and let Up take the playing trailer fullscreen.
+
 0.3.11
 Recover missing Home artwork with layered poster, still and backdrop fallbacks.
 
