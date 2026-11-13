@@ -3,6 +3,7 @@ import os
 import re
 import shutil
 import sys
+import time
 import xbmc
 import xbmcaddon
 import xbmcgui
@@ -25,6 +26,90 @@ REPOSITORIES = {
     "repository.mdm.repo": "Public",
     "repository.mdm.repo.dev": "Dev",
 }
+MDM_ADDONS = {
+    "plugin.video.mdm.flix": "Flix",
+    "script.mdm.core": "Core",
+    "script.mdm.link": "Link",
+    "script.mdm.conf": "Conf",
+    "skin.mdm.skin": "Skin",
+    "repository.mdm.repo": "Repo",
+    "repository.mdm.repo.dev": "Dev Repo",
+}
+FLIX = "plugin.video.mdm.flix"
+FLIX_URL = f"plugin://{FLIX}/?"
+FLIX_AVAILABLE = " + ".join(
+    f"System.AddonIsEnabled({addon})" for addon in (FLIX, "script.mdm.core", "script.mdm.link")
+)
+HOME_ROUTES = {
+    "continue_watching", "next_episodes", "library_home_list", "search",
+    "movies", "tvshows",
+}
+
+
+def installing_mdm():
+    folders, files = xbmcvfs.listdir("addons://downloading/")
+    return set(folders + files) & MDM_ADDONS.keys()
+
+
+def wait_for_updates(*, startup=False):
+    monitor = xbmc.Monitor()
+    progress = None
+    observed = set()
+    quiet_since = None
+    now = time.monotonic()
+    start_check_until = now + (2 if startup else 0)
+    deadline = now + 120
+    try:
+        while not monitor.abortRequested():
+            pending = installing_mdm()
+            available = xbmc.getCondVisibility(FLIX_AVAILABLE)
+            now = time.monotonic()
+            if pending:
+                quiet_since = None
+                observed.update(pending)
+                if progress is None:
+                    if startup:
+                        xbmcgui.Window(10000).setProperty("mdm_widget_mode", "")
+                    progress = xbmcgui.DialogProgress()
+                    progress.create("Updating MDM add-ons", "Please wait. Kodi is installing updates.")
+                names = ", ".join(MDM_ADDONS[addon] for addon in MDM_ADDONS if addon in pending)
+                completed = len(observed - pending)
+                progress.update(100 * completed // len(observed), f"Kodi is updating {names}…")
+            elif available and now >= start_check_until:
+                if not observed:
+                    return True
+                if quiet_since is None:
+                    quiet_since = now
+                elif now - quiet_since >= 1:
+                    return True
+            elif now >= start_check_until and not observed:
+                return False
+            else:
+                quiet_since = None
+            if now >= deadline or (progress is not None and progress.iscanceled()):
+                return False
+            if monitor.waitForAbort(0.5):
+                return False
+        return False
+    finally:
+        if progress is not None:
+            progress.close()
+
+
+def open_flix(action):
+    if not wait_for_updates():
+        xbmcgui.Dialog().notification("MDM Flix", "Flix is unavailable. Check Add-ons or try again shortly.")
+        return
+    if action == "flix_settings":
+        try:
+            xbmcaddon.Addon(FLIX).openSettings()
+        except RuntimeError:
+            xbmcgui.Dialog().notification("MDM Flix", "Flix is unavailable. Try again shortly.")
+    elif action == "library_home_list_choose":
+        xbmc.executebuiltin(f"RunPlugin({FLIX_URL}action={action})")
+    else:
+        query = action + ("&input=1" if action == "search" else "")
+        xbmc.executebuiltin(f"ActivateWindow(Videos,{FLIX_URL}action={query},return)")
 
 
 def luminance(rgb):
@@ -120,15 +205,21 @@ def run():
     if xbmc.getSkinDir() != "skin.mdm.skin":
         return
     action = sys.argv[1] if len(sys.argv) > 1 else ""
+    if action == "refresh_home":
+        xbmc.executebuiltin("UpdateAddonRepos()")
+        if wait_for_updates(startup=True):
+            xbmc.executebuiltin(f"RunPlugin({FLIX_URL}action=mdblist_home_refresh)")
+        xbmc.executebuiltin("ReloadSkin()")
+        return
     if action == "settings_menu":
         options = (
             ("MDM Setup", "RunAddon(script.mdm.conf)"),
             ("Flix settings", "flix_settings"),
             ("Home mode", "choose"),
-            ("Manage lists and ratings", "ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home,return)"),
+            ("Manage lists and ratings", "library_home"),
             ("Add-ons", "ActivateWindow(addonbrowser)"),
             ("Kodi settings", "ActivateWindow(settings)"),
-            ("Home list shortcut", "RunPlugin(plugin://plugin.video.mdm.flix/?action=library_home_list_choose)"),
+            ("Home list shortcut", "library_home_list_choose"),
             ("Home accent colour", "accent"),
             ("Home repository shortcut", "choose_repository"),
         )
@@ -136,9 +227,12 @@ def run():
         if not 0 <= choice < len(options):
             return
         action = options[choice][1]
-        if action not in ("choose", "flix_settings", "accent", "choose_repository"):
+        if action not in ("choose", "flix_settings", "accent", "choose_repository", "library_home", "library_home_list_choose"):
             xbmc.executebuiltin(action)
             return
+    if action in HOME_ROUTES or action in ("flix_settings", "library_home", "library_home_list_choose"):
+        open_flix(action)
+        return
     repository_shortcut(action)
     if action in ("choose_repository", "open_repository"):
         return
@@ -150,17 +244,22 @@ def run():
         return
     apply_accent(accent)
     set_trailer_key()
+    window = xbmcgui.Window(10000)
+    if not action:
+        if not wait_for_updates(startup=not window.getProperty("mdm_home_started")):
+            window.setProperty("mdm_widget_mode", "")
+            return
+        window.setProperty("mdm_home_started", "1")
+        xbmc.executebuiltin(f"RunPlugin({FLIX_URL}action=library_home_list_label)")
     try:
-        flix = xbmcaddon.Addon("plugin.video.mdm.flix")
-        if action == "flix_settings":
-            flix.openSettings()
+        flix = xbmcaddon.Addon(FLIX)
         # Whitelisted, non-secret mode in the widget URL invalidates cached
         # directory items when the playback preference changes. Metadata still
         # uses the existing Core cache. No source requests occur on home.
         mode_key = "autoplay" if flix.getSetting("playback_mode") == "Autoplay" else "select"
         xbmcgui.Window(10000).setProperty("mdm_widget_mode", mode_key)
     except RuntimeError:
-        xbmcgui.Window(10000).setProperty("mdm_widget_mode", "select")
+        window.setProperty("mdm_widget_mode", "")
     memory = memory_mb(xbmc.getInfoLabel("System.Memory(total)"))
     try:
         free = shutil.disk_usage(xbmcvfs.translatePath("special://profile/")).free

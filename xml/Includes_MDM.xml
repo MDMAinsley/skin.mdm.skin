@@ -600,23 +600,23 @@
     <value />
   </variable>
   <variable name="MDMWidgetMovieURL">
-    <value condition="Skin.HasSetting(device_mdm_artwork) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=movie&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;artwork=$INFO[Window(home).Property(mdm_artwork_revision)]</value>
+    <value condition="Skin.HasSetting(device_mdm_artwork) + System.AddonIsEnabled(plugin.video.mdm.flix) + System.AddonIsEnabled(script.mdm.core) + System.AddonIsEnabled(script.mdm.link) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=movie&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;artwork=$INFO[Window(home).Property(mdm_artwork_revision)]</value>
     <value />
   </variable>
   <variable name="MDMWidgetTVURL">
-    <value condition="Skin.HasSetting(device_mdm_artwork) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=tv&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;artwork=$INFO[Window(home).Property(mdm_artwork_revision)]</value>
+    <value condition="Skin.HasSetting(device_mdm_artwork) + System.AddonIsEnabled(plugin.video.mdm.flix) + System.AddonIsEnabled(script.mdm.core) + System.AddonIsEnabled(script.mdm.link) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;media_type=tv&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;artwork=$INFO[Window(home).Property(mdm_artwork_revision)]</value>
     <value />
   </variable>
   <variable name="MDMWidgetContinueURL">
-    <value condition="Skin.HasSetting(device_mdm_artwork) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=continue&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_continue_revision)]</value>
+    <value condition="Skin.HasSetting(device_mdm_artwork) + System.AddonIsEnabled(plugin.video.mdm.flix) + System.AddonIsEnabled(script.mdm.core) + System.AddonIsEnabled(script.mdm.link) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=continue&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_continue_revision)]</value>
     <value />
   </variable>
   <variable name="MDMWidgetNextURL">
-    <value condition="Skin.HasSetting(device_mdm_artwork) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=next&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_continue_revision)]</value>
+    <value condition="Skin.HasSetting(device_mdm_artwork) + System.AddonIsEnabled(plugin.video.mdm.flix) + System.AddonIsEnabled(script.mdm.core) + System.AddonIsEnabled(script.mdm.link) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=next&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_continue_revision)]</value>
     <value />
   </variable>
   <variable name="MDMWidgetListURL">
-    <value condition="Skin.HasSetting(device_mdm_artwork) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=my_list&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_my_list_revision)]</value>
+    <value condition="Skin.HasSetting(device_mdm_artwork) + System.AddonIsEnabled(plugin.video.mdm.flix) + System.AddonIsEnabled(script.mdm.core) + System.AddonIsEnabled(script.mdm.link) + !String.IsEmpty(Window(home).Property(mdm_widget_mode))">plugin://plugin.video.mdm.flix/?action=skin_widget&amp;row=my_list&amp;mode=$INFO[Window(home).Property(mdm_widget_mode)]&amp;revision=$INFO[Window(home).Property(mdm_home_my_list_revision)]</value>
     <value />
   </variable>
 </includes>

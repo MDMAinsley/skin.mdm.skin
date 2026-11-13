@@ -2,7 +2,6 @@
 <window>
   <defaultcontrol>103</defaultcontrol>
   <onload>RunScript(special://skin/default.py)</onload>
-  <onload>RunPlugin(plugin://plugin.video.mdm.flix/?action=library_home_list_label)</onload>
   <backgroundcolor>FF101014</backgroundcolor>
   <controls>
     <control type="group">
@@ -90,7 +89,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=continue_watching,return)</onclick>
+        <onclick>RunScript(special://skin/default.py,continue_watching)</onclick>
         <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5300).NumItems,0)">5300</onright>
         <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5300).NumItems,0)">noop</onright>
       </control>
@@ -110,7 +109,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=next_episodes,return)</onclick>
+        <onclick>RunScript(special://skin/default.py,next_episodes)</onclick>
         <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5500).NumItems,0)">5500</onright>
         <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5500).NumItems,0)">noop</onright>
       </control>
@@ -130,7 +129,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=library_home_list,return)</onclick>
+        <onclick>RunScript(special://skin/default.py,library_home_list)</onclick>
         <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5400).NumItems,0)">5400</onright>
         <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5400).NumItems,0)">noop</onright>
       </control>
@@ -150,7 +149,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=search&amp;input=1,return)</onclick>
+        <onclick>RunScript(special://skin/default.py,search)</onclick>
         <onright>noop</onright>
       </control>
       <control type="button" id="100">
@@ -169,7 +168,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=movies,return)</onclick>
+        <onclick>RunScript(special://skin/default.py,movies)</onclick>
         <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5100).NumItems,0)">5100</onright>
         <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5100).NumItems,0)">noop</onright>
       </control>
@@ -189,7 +188,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>ActivateWindow(Videos,plugin://plugin.video.mdm.flix/?action=tvshows,return)</onclick>
+        <onclick>RunScript(special://skin/default.py,tvshows)</onclick>
         <onright condition="Skin.HasSetting(device_mdm_artwork) + Integer.IsGreater(Container(5200).NumItems,0)">5200</onright>
         <onright condition="!Skin.HasSetting(device_mdm_artwork) | !Integer.IsGreater(Container(5200).NumItems,0)">noop</onright>
       </control>
@@ -209,9 +208,7 @@
         <onback>103</onback>
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
-        <onclick>UpdateAddonRepos()</onclick>
-        <onclick>RunPlugin(plugin://plugin.video.mdm.flix/?action=mdblist_home_refresh)</onclick>
-        <onclick>ReloadSkin()</onclick>
+        <onclick>RunScript(special://skin/default.py,refresh_home)</onclick>
         <onright>noop</onright>
       </control>
       <control type="button" id="113">
