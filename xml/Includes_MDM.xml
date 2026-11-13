@@ -75,17 +75,24 @@
       <param name="top" value="76" />
     </include>
     <include content="MDMInstalledVersion">
+      <param name="id" value="service.subtitles.mdm.subs" />
+      <param name="name" value="Subs" />
+      <param name="color" value="FF00CFC3" />
+      <param name="left" value="632" />
+      <param name="top" value="76" />
+    </include>
+    <include content="MDMInstalledVersion">
       <param name="id" value="repository.mdm.repo" />
       <param name="name" value="Repo" />
       <param name="color" value="FFFF8188" />
-      <param name="left" value="632" />
+      <param name="left" value="914" />
       <param name="top" value="76" />
     </include>
     <include content="MDMInstalledVersion">
       <param name="id" value="repository.mdm.repo.dev" />
       <param name="name" value="Dev Repo" />
       <param name="color" value="FFFF8188" />
-      <param name="left" value="914" />
+      <param name="left" value="1196" />
       <param name="top" value="76" />
     </include>
   </include>

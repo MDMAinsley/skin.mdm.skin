@@ -1,3 +1,6 @@
+0.3.19
+Show the installed MDM Subs version beside MDM Skin on Home.
+
 0.3.18
 Wait for Kodi to finish installing MDM add-ons before opening Flix from Home. Show update progress while waiting.
 
