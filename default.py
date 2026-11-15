@@ -41,7 +41,7 @@ FLIX_AVAILABLE = " + ".join(
     f"System.AddonIsEnabled({addon})" for addon in (FLIX, "script.mdm.core", "script.mdm.link")
 )
 HOME_ROUTES = {
-    "continue_watching", "next_episodes", "library_home_list", "search",
+    "continue_watching", "next_episodes", "library_home_list", "search", "recent_searches",
     "movies", "tvshows",
 }
 
@@ -105,7 +105,7 @@ def open_flix(action):
             xbmcaddon.Addon(FLIX).openSettings()
         except RuntimeError:
             xbmcgui.Dialog().notification("MDM Flix", "Flix is unavailable. Try again shortly.")
-    elif action == "library_home_list_choose":
+    elif action in ("library_home_list_choose", "recent_searches"):
         xbmc.executebuiltin(f"RunPlugin({FLIX_URL}action={action})")
     else:
         query = action + ("&input=1" if action == "search" else "")

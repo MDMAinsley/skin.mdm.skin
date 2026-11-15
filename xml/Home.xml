@@ -136,11 +136,11 @@
       <control type="button" id="102">
         <left>60</left>
         <top>350</top>
-        <width>340</width>
+        <width>120</width>
         <height>57</height>
         <label>Search</label>
         <font>font13</font>
-        <textoffsetx>20</textoffsetx>
+        <textoffsetx>14</textoffsetx>
         <aligny>center</aligny>
         <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
         <onup>105</onup>
@@ -150,7 +150,26 @@
         <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
         <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
         <onclick>RunScript(special://skin/default.py,search)</onclick>
+        <onright>115</onright>
+      </control>
+      <control type="button" id="115">
+        <left>188</left>
+        <top>350</top>
+        <width>212</width>
+        <height>57</height>
+        <label>Recent searches</label>
+        <font>font12</font>
+        <textoffsetx>14</textoffsetx>
+        <aligny>center</aligny>
+        <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
+        <onup>105</onup>
+        <ondown>100</ondown>
+        <onleft>102</onleft>
         <onright>noop</onright>
+        <onback>103</onback>
+        <texturefocus colordiffuse="$VAR[MDMHomeAccent]">colors/white.png</texturefocus>
+        <texturenofocus colordiffuse="BB202024">colors/white.png</texturenofocus>
+        <onclick>RunScript(special://skin/default.py,recent_searches)</onclick>
       </control>
       <control type="button" id="100">
         <left>60</left>
