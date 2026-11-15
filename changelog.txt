@@ -1,3 +1,6 @@
+0.3.20
+Show the installed Fire TV voice helper version on Home when voice search is enabled.
+
 0.3.19
 Show the installed MDM Subs version beside MDM Skin on Home.
 

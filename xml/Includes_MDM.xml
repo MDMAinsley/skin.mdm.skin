@@ -31,6 +31,10 @@
       </control>
     </definition>
   </include>
+  <variable name="MDMVoiceHelperVersion">
+    <value condition="!String.IsEmpty(Window(home).Property(MDM.Flix.VoiceHelperVersion))">$INFO[Window(home).Property(MDM.Flix.VoiceHelperVersion)]</value>
+    <value>Open Search to check</value>
+  </variable>
   <include name="MDMInstalledVersions">
     <control type="image">
       <left>0</left>
@@ -95,6 +99,17 @@
       <param name="left" value="1196" />
       <param name="top" value="76" />
     </include>
+    <control type="label">
+      <left>1480</left>
+      <top>76</top>
+      <width>378</width>
+      <height>30</height>
+      <aligny>center</aligny>
+      <font>font10</font>
+      <textcolor>FFF0F0F0</textcolor>
+      <label>[COLOR FF88ACFF]Voice helper[/COLOR]: $VAR[MDMVoiceHelperVersion]</label>
+      <visible>String.IsEqual(Window(home).Property(mdm_show_voice_helper),true)</visible>
+    </control>
   </include>
   <expression name="mdm_home_browsing">Control.HasFocus(5300) | Control.HasFocus(5500) | Control.HasFocus(5400) | Control.HasFocus(5100) | Control.HasFocus(5200)</expression>
   <expression name="mdm_home_preview_visible">Player.HasVideo + $EXP[mdm_home_browsing] + !String.IsEmpty(Window(home).Property(mdm_preview_active))</expression>

@@ -256,9 +256,13 @@ def run():
         # Whitelisted, non-secret mode in the widget URL invalidates cached
         # directory items when the playback preference changes. Metadata still
         # uses the existing Core cache. No source requests occur on home.
+        show_voice = (window.getProperty("mdm_trailer_key") == "firetv"
+                      and flix.getSetting("device_voice_search") == "true")
+        window.setProperty("mdm_show_voice_helper", "true" if show_voice else "")
         mode_key = "autoplay" if flix.getSetting("playback_mode") == "Autoplay" else "select"
         xbmcgui.Window(10000).setProperty("mdm_widget_mode", mode_key)
     except RuntimeError:
+        window.clearProperty("mdm_show_voice_helper")
         window.setProperty("mdm_widget_mode", "")
     memory = memory_mb(xbmc.getInfoLabel("System.Memory(total)"))
     try:
