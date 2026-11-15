@@ -140,7 +140,8 @@
         <height>57</height>
         <label>Search</label>
         <font>font13</font>
-        <textoffsetx>14</textoffsetx>
+        <textoffsetx>6</textoffsetx>
+        <align>center</align>
         <aligny>center</aligny>
         <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
         <onup>105</onup>
@@ -159,7 +160,8 @@
         <height>57</height>
         <label>Recent searches</label>
         <font>font12</font>
-        <textoffsetx>14</textoffsetx>
+        <textoffsetx>6</textoffsetx>
+        <align>center</align>
         <aligny>center</aligny>
         <focusedcolor>$VAR[MDMHomeAccentText]</focusedcolor>
         <onup>105</onup>

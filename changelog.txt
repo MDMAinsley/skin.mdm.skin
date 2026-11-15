@@ -1,3 +1,6 @@
+0.3.22
+Keep both Search shortcuts readable at the default Home font size.
+
 0.3.21
 Add Recent searches beside Search on Home.
 
